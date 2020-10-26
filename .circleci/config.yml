@@ -23,8 +23,6 @@ jobs:
       - run:
           name: clean build
           command: ./gradlew clean
-      - run:  yes | sdkmanager --licenses && sdkmanager --update
-
       - run:
           name: Run sonarqube Tests
           command: ./gradlew sonarqube
