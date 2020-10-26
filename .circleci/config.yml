@@ -1,4 +1,10 @@
 version: 2.1
+
+workflows:
+    jobs:
+      - build:
+          context: sonarcloud_env # needed for ./gradlew sonarqube run smoothly
+
 jobs:
   build:
     working_directory: ~/code
@@ -23,6 +29,10 @@ jobs:
       - run:
           name: clean build
           command: ./gradlew clean
+      - run:
+          name: sonarqube environment
+          command: ./gradlew clean
+
       - run:
           name: Run sonarqube Tests
           command: ./gradlew sonarqube
