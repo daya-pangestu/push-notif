@@ -1,0 +1,96 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.4.10"
+    ext.jacoco_version = "0.8.5"
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+
+        classpath "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
+
+        classpath "org.jacoco:org.jacoco.core:0.8.5" //jacoco in root 
+
+
+        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0" //jacoco in each module
+
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+apply plugin: 'jacoco'
+apply plugin: "org.sonarqube"
+
+def coverageMainSourceDirs = ['app/src/main/kotlin',
+                              'shared/src/main/kotlin'
+]
+
+def coverageKotlinClassDirectories = [fileTree(dir: 'app/build/tmp/kotlin-classes/debug'),
+                                      fileTree(dir: 'shared/build/tmp/kotlin-classes/debug')
+]
+
+def coverageClassDirectories = [fileTree(dir: 'app/build/intermediates/classes/debug'),
+                                fileTree(dir: 'shared/build/intermediates/classes/debug')
+]
+
+
+task rootCodeCoverageReport(type: JacocoReport, dependsOn: ['app:jacocoTestReportDebug',
+                                                            'shared:jacocoTestReportDebug'
+]) {
+    group = "Reporting"
+    description = "Generate Jacoco test reports after running tests."
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    sourceDirectories.from = files(coverageMainSourceDirs)
+    classDirectories.from = files(coverageClassDirectories, coverageKotlinClassDirectories)
+    executionData.from = files(["shared/build/jacoco/testDebugUnitTest.exec",
+                           "app/build/jacoco/testDebugUnitTest.exec",
+    ])
+}
+
+
+task getCoverageLocal(type: Exec, dependsOn: 'rootCodeCoverageReport') {
+    group = "Reporting"
+    commandLine "open", "${project.buildDir}/features/${project.name}/build/reports/jacoco/codeCoverageReport/html/index.html"
+}
+
+sonarqube {
+    properties {
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.projectName", "Taha"
+        property "sonar.tests", "**/test/**"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.tags", "android"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/jacoco/debug/jacoco.xml"
+        property "sonar.junit.reportsPath", "${project.buildDir}/test-results/testDebugUnitTest"
+        property "sonar.java.binaries", "${project.buildDir}/tmp/kotlin-classes"
+
+        property "sonar.projectKey", "com.daya.taha"
+        property "sonar.organization", "taha-tugas-akhir-haha"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+tasks.sonarqube.dependsOn "rootCodeCoverageReport" group "Reporting"
