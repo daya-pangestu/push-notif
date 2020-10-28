@@ -13,11 +13,11 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
 
-        classpath "org.jacoco:org.jacoco.core:0.8.5" //jacoco in root 
+        classpath "org.jacoco:org.jacoco.core:0.8.6" //jacoco in root
 
         classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0" //jacoco in each module
 
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
 
     }
 }
@@ -78,23 +78,16 @@ sonarqube {
 
         //multi module config
         property "sonar.sourceEncoding", "UTF-8"
-
+        property "sonar.coverage.jacoco.xmlReportPaths","${projectDir}/build/reports/jacoco/jacocoRootReportDebug/jacocoRootReportDebug.xml"
     }
 }
 
-subprojects {
-    sonarqube {
-        properties {
-            property "sonar.coverage.jacoco.xmlReportPaths","$buildDir/reports/jacoco/debug/jacoco.xml"
-        }
-    }
-}
 tasks.sonarqube.dependsOn "jacocoRootReportDebug"
+
 junitJacoco {
-    //jacocoVersion = '0.8.6' // type String
+    jacocoVersion = '0.8.6' // type String
     excludes =[
             '**/*hilt*.*'
     ]// type String List
     includeNoLocationClasses = true // type boolean
-
 }
