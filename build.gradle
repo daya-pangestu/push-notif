@@ -81,12 +81,20 @@ sonarqube {
 
     }
 }
-//
-//subprojects {
-//    sonarqube {
-//        properties {
-//            property "sonar.coverage.jacoco.xmlReportPaths","$buildDir/reports/jacoco/debug/jacoco.xml"
-//        }
-//    }
-//}
+
+subprojects {
+    sonarqube {
+        properties {
+            property "sonar.coverage.jacoco.xmlReportPaths","$buildDir/reports/jacoco/debug/jacoco.xml"
+        }
+    }
+}
 tasks.sonarqube.dependsOn "jacocoRootReportDebug"
+junitJacoco {
+    //jacocoVersion = '0.8.6' // type String
+    excludes =[
+            '**/*hilt*.*'
+    ]// type String List
+    includeNoLocationClasses = true // type boolean
+
+}
