@@ -13,10 +13,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
 
-        classpath "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
-
         classpath "org.jacoco:org.jacoco.core:0.8.5" //jacoco in root 
-
 
         classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0" //jacoco in each module
 
@@ -24,6 +21,14 @@ buildscript {
 
     }
 }
+plugins {
+    id "com.vanniktech.android.junit.jacoco" version "0.16.0"
+    id "org.sonarqube" version "3.0"
+
+}
+
+
+
 
 allprojects {
     repositories {
@@ -32,65 +37,56 @@ allprojects {
     }
 }
 
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-apply plugin: 'jacoco'
-apply plugin: "org.sonarqube"
+//jacocoRootReport for debug, TODO dynamically rename root report for each variant
+task jacocoRootReportDebug(type: JacocoReport, group: 'Coverage reports',dependsOn: [":app:jacocoTestReportDebug",":shared:jacocoTestReportDebug"]) {
+    description = 'Generates an aggregate report from all subprojects'
 
-def coverageMainSourceDirs = ['app/src/main/kotlin',
-                              'shared/src/main/kotlin'
-]
+    sourceDirectories.from = files([
+            tasks.getByPath("app:jacocoTestReportDebug").sourceDirectories,
+            tasks.getByPath("shared:jacocoTestReportDebug").sourceDirectories])
+    classDirectories.from = files([
+            tasks.getByPath("app:jacocoTestReportDebug").classDirectories,
+            tasks.getByPath("shared:jacocoTestReportDebug").classDirectories])
 
-def coverageKotlinClassDirectories = [fileTree(dir: 'app/build/tmp/kotlin-classes/debug'),
-                                      fileTree(dir: 'shared/build/tmp/kotlin-classes/debug')
-]
+    executionData.from = files([
+            tasks.getByPath("app:jacocoTestReportDebug").executionData,
+            tasks.getByPath("shared:jacocoTestReportDebug").executionData])
 
-def coverageClassDirectories = [fileTree(dir: 'app/build/intermediates/classes/debug'),
-                                fileTree(dir: 'shared/build/intermediates/classes/debug')
-]
-
-
-task rootCodeCoverageReport(type: JacocoReport, dependsOn: ['app:jacocoTestReportDebug',
-                                                            'shared:jacocoTestReportDebug'
-]) {
-    group = "Reporting"
-    description = "Generate Jacoco test reports after running tests."
     reports {
-        xml.enabled = true
-        html.enabled = true
+        html.enabled = true // human readable
+        xml.enabled = true // required by coveralls
     }
-
-    sourceDirectories.from = files(coverageMainSourceDirs)
-    classDirectories.from = files(coverageClassDirectories, coverageKotlinClassDirectories)
-    executionData.from = files(["shared/build/jacoco/testDebugUnitTest.exec",
-                           "app/build/jacoco/testDebugUnitTest.exec",
-    ])
 }
 
-
-task getCoverageLocal(type: Exec, dependsOn: 'rootCodeCoverageReport') {
-    group = "Reporting"
-    commandLine "open", "${project.buildDir}/features/${project.name}/build/reports/jacoco/codeCoverageReport/html/index.html"
+junitJacoco {
+    excludes = [
+            '**/*hilt*.*'
+    ]
 }
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "com.daya.taha"
-        property "sonar.organization", "taha-tugas-akhir-haha"
-        property "sonar.host.url", "https://sonarcloud.io"
+//        property "sonar.projectKey", "com.daya.taha"
+//        property "sonar.organization", "taha-tugas-akhir-haha"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
+//jacoco path sonarclod.io
 
+        //multi module config
         property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.projectName", "Taha"
-        property "sonar.tests", "**/test/**"
-        property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.tags", "android"
-        property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/jacoco/debug/jacoco.xml"
-        property "sonar.junit.reportsPath", "${project.buildDir}/test-results/testDebugUnitTest"
-        property "sonar.java.binaries", "${project.buildDir}/tmp/kotlin-classes"
+
     }
 }
-
-tasks.sonarqube.dependsOn "rootCodeCoverageReport" group "Reporting"
+//
+//subprojects {
+//    sonarqube {
+//        properties {
+//            property "sonar.coverage.jacoco.xmlReportPaths","$buildDir/reports/jacoco/debug/jacoco.xml"
+//        }
+//    }
+//}
+tasks.sonarqube.dependsOn "jacocoRootReportDebug"

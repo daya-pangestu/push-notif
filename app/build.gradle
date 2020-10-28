@@ -3,8 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: "com.vanniktech.android.junit.jacoco"
-apply plugin: "de.mannodermaus.android-junit5"
 
 android {
     compileSdkVersion Versions.compilveSdk
@@ -21,10 +19,19 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            versionNameSuffix "-debug"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testCoverageEnabled true
         }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testCoverageEnabled true
+
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -38,6 +45,17 @@ android {
         viewBinding true
     }
 
+     testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
+
 }
 
 
@@ -46,20 +64,30 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation LibsCommon.core_ktx
+    implementation LibsCommon.appcompat
+    implementation LibsCommon.material
 
-    //testing
-    testImplementation Libs.junit_jupiter_test
-    testRuntimeOnly Libs.junit_jupiter_engine_test_runtime
-    testImplementation Libs.junit_jupiter_params_test
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //ui test suite
+    androidTestImplementation LibsTest.androidx_test_runner_andro_test
+    androidTestImplementation LibsTest.androidx_test_rules_andro_test
+    androidTestImplementation LibsTest.androidx_test_junit_andro_test
+    androidTestImplementation  LibsTest.androidx_test_truth_andro_test
+    androidTestImplementation  LibsTest.truth_andro_test
+    androidTestImplementation LibsTest.androidx_test_espresso_core_andro_test
+    androidTestImplementation LibsTest.androidx_test_espresso_web_andro_test
+    //unit test suite
+    testImplementation LibsTest.androidx_test_runner_test
+    testImplementation LibsTest.androidx_test_rules_test
+    testImplementation LibsTest.androidx_test_junit_test
+    testImplementation  LibsTest.androidx_test_truth_test
+    testImplementation  LibsTest.truth_test
+    testImplementation LibsTest.androidx_test_espresso_core_test
+    testImplementation LibsTest.androidx_test_espresso_web_test
+    testImplementation LibsTest.robolectric_test
+    testImplementation LibsTest.junit_4_test
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation Libs.constaraint_layout
 
     //navigation
     implementation Libs.navigation_fragment
@@ -91,3 +119,9 @@ dependencies {
     implementation Libs.viewpager2
 
 }
+
+jacoco{
+
+}
+
+

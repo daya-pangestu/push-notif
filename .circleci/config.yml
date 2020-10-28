@@ -30,10 +30,6 @@ jobs:
       - run:
           name: clean build
           command: ./gradlew clean
-      - run:
-          name: sonarqube environment
-          command: ./gradlew clean
-
 
       - run:
           name: Run sonarqube Tests

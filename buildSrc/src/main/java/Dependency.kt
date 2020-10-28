@@ -36,8 +36,17 @@ object Versions{
 
 }
 
+object LibsCommon{
+    const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx}"
+    const val appcompat =  "androidx.appcompat:appcompat:1.2.0"
+    const val material = "com.google.android.material:material:1.2.1"
+}
+
 
 object Libs {
+    const val constaraint_layout = "androidx.constraintlayout:constraintlayout:2.0.2"
+    const val legacy_support = "androidx.legacy:legacy-support-v4:1.0.0"
+    const val vector_drawable = "androidx.vectordrawable:vectordrawable:1.1.0"
 
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_compiler_kapt = "com.github.bumptech.glide:compiler:${Versions.glide}"
@@ -78,7 +87,6 @@ object Libs {
 
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
 
-    const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx}"
 
     const val firebase_analytics = "com.google.firebase:firebase-analytics-ktx:${Versions.firebaseAnalytics}"
     const val firebase_auth = "com.google.firebase:firebase-auth-ktx:${Versions.firebaseAuth}"
@@ -88,9 +96,7 @@ object Libs {
     const val firebase_messaging = "com.google.firebase:firebase-messaging$:${Versions.firebaseMessaging}"
     const val firebase_ui_auth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUi}"
 
-    const val junit_jupiter_test =  "org.junit.jupiter:junit-jupiter-api:5.7.0"
-    const val junit_jupiter_engine_test_runtime = "org.junit.jupiter:junit-jupiter-engine:5.7.0"
-    const val junit_jupiter_params_test ="org.junit.jupiter:junit-jupiter-params:5.7.0"
+
 }
 
 object LibsUtils{
@@ -104,8 +110,48 @@ object VersionsTest{
 
 object LibsTest{
     const val truth_test = "com.google.truth:truth:${VersionsTest.truth}"
+    const val truth_andro_test = "com.google.truth:truth:${VersionsTest.truth}"
+
+    const val junit_4_test = "junit:junit:4.13.1"
+
+
+    //default test framework for instrumented test
+    const val androidx_test_runner_andro_test =  "androidx.test:runner:1.1.0"
+    const val androidx_test_rules_andro_test =  "androidx.test:rules:1.1.0"
+    const val androidx_test_junit_andro_test ="androidx.test.ext:junit:1.0.0"
+    const val androidx_test_truth_andro_test = "androidx.test.ext:truth:1.3.0"
+    const val androidx_test_espresso_core_andro_test = "androidx.test.espresso:espresso-core:3.3.0"
+    const val androidx_test_espresso_web_andro_test = "androidx.test.espresso:espresso-web:3.3.0"
+
+    //default test suite for unit test
+    const val androidx_test_runner_test =  "androidx.test:runner:1.1.0"
+    const val androidx_test_rules_test =  "androidx.test:rules:1.1.0"
+    const val androidx_test_junit_test ="androidx.test.ext:junit:1.0.0"
+    const val androidx_test_truth_test = "androidx.test.ext:truth:1.3.0"
+    const val androidx_test_espresso_core_test = "androidx.test.espresso:espresso-core:3.3.0"
+    const val androidx_test_espresso_web_test = "androidx.test.espresso:espresso-web:3.3.0"
+
+
+    const val robolectric_test = "org.robolectric:robolectric:4.4"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     const val spek_dsl_test = "org.spekframework.spek2:spek-dsl-jvm:${VersionsTest.spek}"
     const val spek_runner_junit5_test = "org.spekframework.spek2:spek-runner-junit5:${VersionsTest.spek}"
+
+    const val junit_jupiter_test =  "org.junit.jupiter:junit-jupiter-api:5.7.0"
+    const val junit_jupiter_engine_test_runtime = "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+    const val junit_jupiter_params_test = "org.junit.jupiter:junit-jupiter-params:5.7.0"
 
 }
