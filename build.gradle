@@ -93,10 +93,3 @@ junitJacoco {
     includeNoLocationClasses = true // type boolean
 }
 
-
-apply plugin: 'jacoco'
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-    jacoco.excludes = ['jdk.internal.*'] // see related issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
-}
-

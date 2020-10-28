@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
-
+apply plugin: 'jacoco'
 android {
     compileSdkVersion Versions.compilveSdk
     buildToolsVersion Versions.buildTool
@@ -120,8 +120,6 @@ dependencies {
 
 }
 
-jacoco{
-
+tasks.withType(Test) {
+    jacoco.excludes = ['jdk.internal.*'] // see related issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
 }
-
-

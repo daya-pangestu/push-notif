@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'jacoco'
 }
 
 android {
@@ -77,8 +78,6 @@ dependencies {
     api Libs.store4
 }
 
-
-
-jacoco{
-
+tasks.withType(Test) {
+    jacoco.excludes = ['jdk.internal.*'] // see related issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
 }
