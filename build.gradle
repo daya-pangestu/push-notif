@@ -88,9 +88,15 @@ tasks.sonarqube.dependsOn "jacocoRootReportDebug"
 junitJacoco {
     jacocoVersion = '0.8.6' // type String
     excludes =[
-            '**/*hilt*.*',
-            'jdk.internal.*'
+            '**/*hilt*.*'
     ]// type String List
     includeNoLocationClasses = true // type boolean
+}
+
+
+apply plugin: 'jacoco'
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*'] // see related issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
 }
 
