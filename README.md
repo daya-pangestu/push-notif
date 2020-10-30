@@ -13,13 +13,12 @@ beberapa library untuk memastikan kualitas code dalam proses pengembangan
 * [SonarCloud.io](sonarcloud.io) - online-based code coverage reporting tool
 
 
-### pengaplikasian tech development
+### review project
 
-| Plugin | gist |
+| tech | gist |
 | ------ | ------ |
-| Circle Ci | [TODO] |
-| Jacoco | [TODO] |
-| Sonarcloud | [TODO] |
+| Circle Ci | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  |
+| Sonarcloud |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects)  |
 
 ### Todos
 
