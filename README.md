@@ -1,5 +1,4 @@
 
-# Example:
 [![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg&circle-token=1968f1d0945ea1079dba54e88a2bd3037d31985e)](https://circleci.com/gh/daya-pangestu/tugas-akhir)
 
 
