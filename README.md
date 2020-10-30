@@ -25,3 +25,11 @@ beberapa library untuk memastikan kualitas code dalam proses pengembangan
 
  - Write MORE Tests
  - todos
+
+
+
+# License
+
+Copyright (C) 2020 Daya Pangestu
+
+Licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
