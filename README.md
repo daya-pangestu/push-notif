@@ -30,6 +30,4 @@ beberapa library untuk memastikan kualitas code dalam proses pengembangan
 
 # License
 
-Copyright (C) 2020 Daya Pangestu
-
-Licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+Licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
