@@ -1,29 +1,25 @@
 
 [![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg&circle-token=1968f1d0945ea1079dba54e88a2bd3037d31985e)](https://circleci.com/gh/daya-pangestu/tugas-akhir)
 
+This is a mobile application that is used for thesis graduation requirements
 
-project aplikasi untuk tugas akhir aplikasi android mengenai notifikasi
+### review Tech for development
 
+few tools used during development to ensure quality of code 
 
-### Tech for development
-
-beberapa library untuk memastikan kualitas code dalam proses pengembangan
-* [Circle CI](https://circleci.com) - continous integration
-* [Jacoco](https://www.eclemma.org/jacoco/) - java code coverage, memastikan code yang ditulis mantul
-* [SonarCloud.io](sonarcloud.io) - online-based code coverage reporting tool
-
-
-### review project
-
-| tech | gist |
-| ------ | ------ |
-| Circle Ci | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  |
-| Sonarcloud |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects)  |
+| [Circle CI](https://circleci.com) | continous integration | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  |
+| [Jacoco](https://www.eclemma.org/jacoco/) | java code coverage | - |
+| [SonarCloud.io](sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) |
 
 ### Todos
 
- - Write MORE Tests
- - todos
+ - define schema for database table
+ - add room database
+ - configure store4 in shared module
+ - test room with store4
+
+
+
 
 
 
