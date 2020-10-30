@@ -3,8 +3,7 @@
 
 This is a mobile application that is used for thesis graduation requirements
 
-### review Tech for development
-
+## Review tools for development
 few tools used during development to ensure quality of code 
 
 |tools|desc|review-link|
@@ -13,14 +12,15 @@ few tools used during development to ensure quality of code
 | [Jacoco](https://www.eclemma.org/jacoco/) | java code coverage | - |
 | [SonarCloud.io](sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) |
 
-### Todos
+
+
+
+## Todos
 
  - define schema for database table
  - add room database
  - configure store4 in shared module
  - test room with store4
-
-
 
 
 
