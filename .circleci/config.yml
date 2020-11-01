@@ -32,6 +32,15 @@ jobs:
           name: unit test on sonarqube
           command: ./gradlew sonarqube
 
+      - store_artifacts:
+          path: /code/build/reports/jacoco/jacocoRootReportDebug/
+
+      - store_artifacts:
+          path: /code/app/build/reports/tests/
+
+      - store_artifacts:
+          path: /code/shared/build/reports/tests/
+
       - run:
           name: clean previous build
           command: ./gradlew clean
@@ -40,5 +49,8 @@ jobs:
           name: ui test on browserstack
           command: ./gradlew executeDebugTestsOnBrowserstack
 
+      - store_artifacts:
+          path: /code/build/app/outputs/apk/
 
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+
+          # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
