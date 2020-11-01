@@ -74,16 +74,16 @@ dependencies {
     androidTestImplementation LibsTest.androidx_test_runner_andro_test
     androidTestImplementation LibsTest.androidx_test_rules_andro_test
     androidTestImplementation LibsTest.androidx_test_junit_andro_test
-    androidTestImplementation  LibsTest.androidx_test_truth_andro_test
-    androidTestImplementation  LibsTest.truth_andro_test
+    androidTestImplementation LibsTest.androidx_test_truth_andro_test
+    androidTestImplementation LibsTest.truth_andro_test
     androidTestImplementation LibsTest.androidx_test_espresso_core_andro_test
     androidTestImplementation LibsTest.androidx_test_espresso_web_andro_test
     //unit test suite
     testImplementation LibsTest.androidx_test_runner_test
     testImplementation LibsTest.androidx_test_rules_test
     testImplementation LibsTest.androidx_test_junit_test
-    testImplementation  LibsTest.androidx_test_truth_test
-    testImplementation  LibsTest.truth_test
+    testImplementation LibsTest.androidx_test_truth_test
+    testImplementation LibsTest.truth_test
     testImplementation LibsTest.androidx_test_espresso_core_test
     testImplementation LibsTest.androidx_test_espresso_web_test
     testImplementation LibsTest.robolectric_test
@@ -119,6 +119,9 @@ dependencies {
 
     //viewpager2
     implementation Libs.viewpager2
+
+    //viewbinding simplify
+    implementation Libs.viewbinding_delegate
 
 }
 

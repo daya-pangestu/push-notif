@@ -33,6 +33,7 @@ object Versions{
     const val firebaseMessaging = "20.1.6"
     const val firebaseUi = "4.0.0"
 
+    const val viewbinding_delegate = "1.3.0"
 
 }
 
@@ -96,6 +97,7 @@ object Libs {
     const val firebase_messaging = "com.google.firebase:firebase-messaging$:${Versions.firebaseMessaging}"
     const val firebase_ui_auth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUi}"
 
+    const val viewbinding_delegate = "com.kirich1409.viewbindingpropertydelegate:viewbindingpropertydelegate:${Versions.viewbinding_delegate}"
 
 }
 
