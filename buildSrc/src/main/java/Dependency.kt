@@ -104,6 +104,7 @@ object LibsUtils{
 }
 
 object VersionsTest{
+    const val test_core = "1.0.0"
     const val truth = "1.1"
     const val spek = "2.0.13"
 }
@@ -114,11 +115,12 @@ object LibsTest{
 
     const val junit_4_test = "junit:junit:4.13.1"
 
+    const val androidx_test_core_ktx = "androidx.test:core:${VersionsTest.test_core}"
 
     //default test framework for instrumented test
-    const val androidx_test_runner_andro_test =  "androidx.test:runner:1.1.0"
-    const val androidx_test_rules_andro_test =  "androidx.test:rules:1.1.0"
-    const val androidx_test_junit_andro_test ="androidx.test.ext:junit:1.0.0"
+    const val androidx_test_runner_andro_test =  "androidx.test:runner:1.3.0"
+    const val androidx_test_rules_andro_test =  "androidx.test:rules:1.3.0"
+    const val androidx_test_junit_andro_test ="androidx.test.ext:junit:1.1.1"
     const val androidx_test_truth_andro_test = "androidx.test.ext:truth:1.3.0"
     const val androidx_test_espresso_core_andro_test = "androidx.test.espresso:espresso-core:3.3.0"
     const val androidx_test_espresso_web_andro_test = "androidx.test.espresso:espresso-web:3.3.0"

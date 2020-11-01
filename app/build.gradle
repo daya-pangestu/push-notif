@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'jacoco'
+apply plugin: 'com.browserstack.gradle'
 android {
     compileSdkVersion Versions.compilveSdk
     buildToolsVersion Versions.buildTool
@@ -55,7 +56,6 @@ android {
             }
         }
     }
-
 }
 
 
@@ -68,6 +68,8 @@ dependencies {
     implementation LibsCommon.appcompat
     implementation LibsCommon.material
 
+
+    androidTestImplementation LibsTest.androidx_test_core_ktx
     //ui test suite
     androidTestImplementation LibsTest.androidx_test_runner_andro_test
     androidTestImplementation LibsTest.androidx_test_rules_andro_test
@@ -122,4 +124,11 @@ dependencies {
 
 tasks.withType(Test) {
     jacoco.excludes = ['jdk.internal.*'] // see related issue https://github.com/gradle/gradle/issues/5184#issuecomment-457865951
+}
+
+//configuration for ui test
+browserStackConfig {
+    username = "dayapangestu1"
+    accessKey = "xbYd3Ec6b6LMntsqfyH5"
+    configFilePath = "$projectDir/browserstack_config.json"
 }
