@@ -1,0 +1,11 @@
+{
+  "devices": [
+    "Xiaomi Redmi Note 8",
+    "Google Pixel 2",
+    "Samsung Galaxy Note 8"
+    ],
+  "deviceLogs": true,
+  "networkLogs": true,
+  "project": "TAha"
+
+}
