@@ -38,7 +38,7 @@ jobs:
 
       - run:
           name: ui test on browserstack
-          command: ./gradlew sonarqube
+          command: ./gradlew executeDebugTestsOnBrowserstack
 
 
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
