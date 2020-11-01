@@ -35,10 +35,10 @@ jobs:
       - store_artifacts:
           path: build/reports/jacoco/jacocoRootReportDebug/
 
-      - store_artifacts:
+      - store_test_results:
           path: app/build/reports/tests/
 
-      - store_artifacts:
+      - store_test_results:
           path: shared/build/reports/tests/
 
       - run:
@@ -50,6 +50,6 @@ jobs:
           command: ./gradlew executeDebugTestsOnBrowserstack
 
       - store_artifacts:
-          path: build/app/outputs/apk/
+          path: app/build/outputs/apk/debug/app-debug.apk
 
           # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
