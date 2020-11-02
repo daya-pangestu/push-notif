@@ -33,7 +33,7 @@ jobs:
           command: ./gradlew sonarqube
 
       - store_artifacts:
-          path: build/reports/jacoco/jacocoRootReportDebug/
+          path: build/reports/jacoco/jacocoRootReportDebug/jacocoRootReportDebug.xml
 
       - run:
           name: Save test results
@@ -43,6 +43,8 @@ jobs:
           when: always
       - store_test_results:
           path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit         
 
       - run:
           name: clean previous build
