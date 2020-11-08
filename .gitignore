@@ -13,3 +13,18 @@
 .externalNativeBuild
 .cxx
 .idea
+
+#generated file
+bin/
+gen/
+
+#built application files
+*.apk
+*.ap_
+*.aab
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class

@@ -10,7 +10,8 @@ few tools used during development to ensure quality of code
 |----|----|----|
 | [Circle CI](https://circleci.com) | continous integration | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  |
 | [Jacoco](https://www.eclemma.org/jacoco/) | java code coverage | - |
-| [SonarCloud.io](sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) |
+| [SonarCloud.io](https://sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) |
+| [BrowserStack](https://browserstack.com) |ui testing cloud-based | non-public|
 
 
 
