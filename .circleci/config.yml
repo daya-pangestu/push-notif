@@ -1,4 +1,11 @@
 version: 2.1
+
+workflows:
+  sonarcloud-vars:
+    jobs:
+      - build:
+          context: sonarcloud_env
+
 jobs:
   build:
     working_directory: ~/code
