@@ -4,7 +4,7 @@ workflows:
   sonarcloud-vars:
     jobs:
       - build:
-          context: sonarcloud_env # needed for ./gradlew sonarqube run smoothly
+          context: sonarcloud_env
 
 jobs:
   build:
@@ -17,9 +17,7 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      #      - run:
-      #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-      #         command: sudo chmod +x ./gradlew
+
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
