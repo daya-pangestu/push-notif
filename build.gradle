@@ -72,7 +72,7 @@ sonarqube {
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.coverage.jacoco.xmlReportPaths","${projectDir}/build/reports/jacoco/jacocoRootReportDebug/jacocoRootReportDebug.xml"
 
-        property "sonar.junit.reportPaths", "${projectDir}/app/build/test-results/TEST-*.xml","${projectDir}/shared/build/test-results/TEST-*.xml"
+        property "sonar.junit.reportPaths", "**/build/test-results/TEST-*.xml"
         //for local test
 //      property "sonar.login", "admin"
 //      property "sonar.password", "admin"
