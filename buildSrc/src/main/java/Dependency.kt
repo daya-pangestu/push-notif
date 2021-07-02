@@ -1,29 +1,29 @@
 
 object Versions{
-    const val compilveSdk = 29
+    const val compilveSdk = 30
     const val buildTool = "29.0.3"
     const val minSdk = 18
-    const val targetSdk = 29
+    const val targetSdk = 30
     const val code = 1
     const val name = "1.0"
 
-    const val glide = "4.11.0"
+    const val glide = "4.12.0"
     const val retrofit = "2.9.0"
     const val hilt = "2.28-alpha"
     const val hilt_jetpack = "1.0.0-alpha01"
     const val coroutine =  "1.3.8"
     const val navigation = "2.3.0"
-    const val lifecycle =  "2.3.0-alpha05"
-    const val room = "2.2.5"
+    const val lifecycle =  "2.4.0-alpha02"
+    const val room = "2.3.0"
 
     const val viewpager2 = "1.0.0"
 
     const val  store = "4.0.0-alpha07"
 
-    const val dataStore = "1.0.0-alpha01"
+    const val dataStore = "1.0.0-rc01"
 
     const val gson = "2.8.6"
-    const val core_ktx= "1.3.2"
+    const val core_ktx= "1.6.0"
 
     const val firebaseAnalytics = "17.4.0"
     const val firebaseAuth = "19.3.1"
@@ -33,19 +33,19 @@ object Versions{
     const val firebaseMessaging = "20.1.6"
     const val firebaseUi = "4.0.0"
 
-    const val viewbinding_delegate = "1.3.0"
+    const val viewbinding_delegate = "1.4.6"
 
 }
 
 object LibsCommon{
     const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx}"
-    const val appcompat =  "androidx.appcompat:appcompat:1.2.0"
+    const val appcompat =  "androidx.appcompat:appcompat:1.3.0"
     const val material = "com.google.android.material:material:1.2.1"
 }
 
 
 object Libs {
-    const val constaraint_layout = "androidx.constraintlayout:constraintlayout:2.0.2"
+    const val constaraint_layout = "androidx.constraintlayout:constraintlayout:2.0.4"
     const val legacy_support = "androidx.legacy:legacy-support-v4:1.0.0"
     const val vector_drawable = "androidx.vectordrawable:vectordrawable:1.1.0"
 
@@ -66,13 +66,13 @@ object Libs {
     const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 
     const val navigation_runtime ="androidx.navigation:navigation-runtime:${Versions.navigation}"
-    const val navigation_fragment ="androidx.navigation:navigation-fragment:${Versions.navigation}"
+    const val navigation_fragment ="androidx.navigation:navigation-fragment:${Versions.navigation}" //gak usah
     const val navigation_fragment_ktx="androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     
     const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}" //gak usah
     const val lifecycle_viewmodel_savedstate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
     const val lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:2.2.0"
 
@@ -88,7 +88,6 @@ object Libs {
 
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
 
-
     const val firebase_analytics = "com.google.firebase:firebase-analytics-ktx:${Versions.firebaseAnalytics}"
     const val firebase_auth = "com.google.firebase:firebase-auth-ktx:${Versions.firebaseAuth}"
     const val firebase_config = "com.google.firebase:firebase-config-ktx:${Versions.firebaseConfig}"
@@ -97,7 +96,7 @@ object Libs {
     const val firebase_messaging = "com.google.firebase:firebase-messaging$:${Versions.firebaseMessaging}"
     const val firebase_ui_auth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUi}"
 
-    const val viewbinding_delegate = "com.kirich1409.viewbindingpropertydelegate:viewbindingpropertydelegate:${Versions.viewbinding_delegate}"
+    const val viewbinding_delegate = "com.github.kirich1409:viewbindingpropertydelegate:${Versions.viewbinding_delegate}"
 
 }
 
