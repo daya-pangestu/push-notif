@@ -25,6 +25,7 @@ object Versions{
     const val gson = "2.8.6"
     const val core_ktx= "1.6.0"
 
+    const val firebase_bom_version = "28.2.0"
     const val firebaseAnalytics = "17.4.0"
     const val firebaseAuth = "19.3.1"
     const val firebaseConfig = "19.1.4"
@@ -88,13 +89,14 @@ object Libs {
 
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
 
-    const val firebase_analytics = "com.google.firebase:firebase-analytics-ktx:${Versions.firebaseAnalytics}"
-    const val firebase_auth = "com.google.firebase:firebase-auth-ktx:${Versions.firebaseAuth}"
-    const val firebase_config = "com.google.firebase:firebase-config-ktx:${Versions.firebaseConfig}"
-    const val firebase_firestore = "com.google.firebase:firebase-firestore-ktx:${Versions.firebaseFirestore}"
-    const val firebase_functions = "com.google.firebase:firebase-functions-ktx:${Versions.firebaseFunctions}"
-    const val firebase_messaging = "com.google.firebase:firebase-messaging$:${Versions.firebaseMessaging}"
-    const val firebase_ui_auth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUi}"
+    const val firebase_bom_platfrom = "com.google.firebase:firebase-bom:${Versions.firebase_bom_version}"
+    const val firebase_analytics = "com.google.firebase:firebase-analytics-ktx" //:${Versions.firebaseAnalytics}
+    const val firebase_auth = "com.google.firebase:firebase-auth-ktx" //:${Versions.firebaseAuth}
+    const val firebase_config = "com.google.firebase:firebase-config-ktx" //:${Versions.firebaseConfig}
+    const val firebase_firestore = "com.google.firebase:firebase-firestore-ktx" //:${Versions.firebaseFirestore}
+    const val firebase_functions = "com.google.firebase:firebase-functions-ktx" //:${Versions.firebaseFunctions}
+    const val firebase_messaging = "com.google.firebase:firebase-messaging" //:${Versions.firebaseMessaging}
+    const val firebase_ui_auth = "com.firebaseui:firebase-ui-auth" //:${Versions.firebaseUi}
 
     const val viewbinding_delegate = "com.github.kirich1409:viewbindingpropertydelegate:${Versions.viewbinding_delegate}"
 

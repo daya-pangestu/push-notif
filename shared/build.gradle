@@ -54,6 +54,14 @@ dependencies {
     implementation LibsCommon.appcompat
     implementation LibsCommon.material
 
+//    //firebase
+//    implementation platfrom(Libs.firebase_bom_platfrom)
+//    implementation Libs.firebase_auth
+//    implementation Libs.firebase_firestore
+//    implementation Libs.firebase_messaging
+//    implementation Libs.firebase_config
+//    implementation Libs.firebase_analytics
+
     //ui test suite
     androidTestImplementation LibsTest.androidx_test_runner_andro_test
     androidTestImplementation LibsTest.androidx_test_rules_andro_test
