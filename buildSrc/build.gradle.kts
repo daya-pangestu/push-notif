@@ -4,7 +4,6 @@ plugins {
 }
 
 repositories{
-    jcenter()
     google()
     mavenCentral()
 
@@ -12,7 +11,6 @@ repositories{
 
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
     }
     dependencies {

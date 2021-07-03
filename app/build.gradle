@@ -61,6 +61,14 @@ android {
 
 kapt {
     correctErrorTypes true
+
+    //see here : https://github.com/google/dagger/issues/2684
+    javacOptions {
+        // These options are normally set automatically via the Hilt Gradle plugin, but we
+        // set them manually to workaround a bug in the Kotlin 1.5.20
+        option("-Adagger.fastInit=ENABLED")
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
 }
 
 dependencies {
@@ -72,63 +80,74 @@ dependencies {
     implementation LibsCommon.core_ktx
     implementation LibsCommon.appcompat
     implementation LibsCommon.material
-
-    debugImplementation LibsTest.fragment_scenario_debug
-
-
-    androidTestImplementation LibsTest.androidx_test_core_ktx
-    //ui test suite
-    androidTestImplementation LibsTest.androidx_test_runner_andro_test
-    androidTestImplementation LibsTest.androidx_test_rules_andro_test
-    androidTestImplementation LibsTest.androidx_test_junit_andro_test
-    androidTestImplementation LibsTest.androidx_test_truth_andro_test
-    androidTestImplementation LibsTest.truth_andro_test
-    androidTestImplementation LibsTest.androidx_test_espresso_core_andro_test
-    androidTestImplementation LibsTest.androidx_test_espresso_web_andro_test
-    //unit test suite
-    testImplementation LibsTest.androidx_test_runner_test
-    testImplementation LibsTest.androidx_test_rules_test
-    testImplementation LibsTest.androidx_test_junit_test
-    testImplementation LibsTest.androidx_test_truth_test
-    testImplementation LibsTest.truth_test
-    testImplementation LibsTest.androidx_test_espresso_core_test
-    testImplementation LibsTest.androidx_test_espresso_web_test
-    testImplementation LibsTest.robolectric_test
-    testImplementation LibsTest.junit_4_test
-
     implementation Libs.constaraint_layout
 
-
-    //navigation
-//    implementation Libs.navigation_fragment
-    implementation Libs.navigation_fragment_ktx
-    implementation Libs.navigation_runtime
-    implementation Libs.navigation_ui_ktx
-
-    //lifecycle
-    implementation Libs.lifecycle_ktx
-    implementation Libs.livedata_ktx
-    implementation Libs.lifecycle_common_java8
-    implementation Libs.viewmodel_ktx
-
-    //hilt
-//    implementation Libs.hilt_android
-    kapt Libs.hilt_compiler_kapt
-    //kapt Libs.androidx_hilt_compiler_kapt
-
-    //room db
-    kapt Libs.room_compiler_kapt
-    implementation Libs.room_ktx
-    implementation Libs.room_runtime
-
-    //coroutine
-    implementation Libs.coroutine
+    //jetpack
+    implementation Libs.activity_ktx
+    implementation Libs.fragment_ktx
 
     //viewpager2
     implementation Libs.viewpager2
 
     //viewbinding simplify
     implementation Libs.viewbinding_delegate
+
+    //flexbox
+    implementation Libs.flexbox
+
+    //google login
+    implementation Libs.play_service_auth
+
+    //glide
+    implementation Libs.glide
+    kapt Libs.glide_compiler_kapt
+
+    //lifecycle
+    implementation Libs.lifecycle_viewmodel_savedstate
+    implementation Libs.lifecycle_common_java8
+    implementation Libs.lifecycle_ktx
+    implementation Libs.viewmodel_ktx
+    implementation Libs.livedata_ktx
+
+    //navigation
+    implementation Libs.navigation_fragment_ktx
+    implementation Libs.navigation_ui_ktx
+    implementation Libs.navigation_runtime_ktx
+    implementation Libs.navigation_test
+
+    //hilt, other related lib already provided by shared module
+    kapt Libs.hilt_compiler_kapt
+
+    //test-core
+    androidTestImplementation LibsTest.androidx_test_core_ktx
+
+    //junit
+    androidTestImplementation LibsTest.androidx_test_junit_test
+
+    //truth
+    androidTestImplementation LibsTest.truth_andro_test
+    androidTestImplementation LibsTest.androidx_test_truth_test
+
+    //test-runner
+    androidTestImplementation LibsTest.androidx_test_runner_test
+
+    //test-rules
+    androidTestImplementation LibsTest.androidx_test_rules_test
+
+    //espresso-core
+    androidTestImplementation LibsTest.androidx_test_espresso_core_test
+
+    //espresso-web
+    androidTestImplementation LibsTest.androidx_test_espresso_web_test
+
+    //espresso-contrib
+    androidTestImplementation LibsTest.androidx_test_espresso_contrib_test
+
+    //espresso-intent
+    androidTestImplementation LibsTest.androidx_test_espresso_intent_test
+
+    androidTestImplementation LibsTest.hilt_android_testing
+    kaptAndroidTest LibsTest.hilt_android_compiler
 
 }
 

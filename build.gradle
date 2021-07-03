@@ -4,7 +4,6 @@ buildscript {
     ext.jacoco_version = "0.8.5"
     repositories {
         google()
-        jcenter()
         mavenCentral()
 
     }
@@ -33,7 +32,7 @@ plugins {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
