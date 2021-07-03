@@ -2,6 +2,8 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'jacoco'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -47,6 +49,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -62,22 +68,45 @@ dependencies {
 //    implementation Libs.firebase_config
 //    implementation Libs.firebase_analytics
 
+
+    //hilt
+    api Libs.hilt_android
+    kapt Libs.hilt_compiler_kapt //also do this in app
+    api Libs.hilt_testing
+
+    //retrofit
+    implementation Libs.retrofit
+    implementation Libs.retrofit_converter_gson
+    implementation Libs.retrofit_converter_scalar
+
     //ui test suite
+    androidTestImplementation LibsTest.androidx_test_core_ktx
+
     androidTestImplementation LibsTest.androidx_test_runner_andro_test
     androidTestImplementation LibsTest.androidx_test_rules_andro_test
+
     androidTestImplementation LibsTest.androidx_test_junit_andro_test
     androidTestImplementation  LibsTest.androidx_test_truth_andro_test
     androidTestImplementation  LibsTest.truth_andro_test
+
     androidTestImplementation LibsTest.androidx_test_espresso_core_andro_test
     androidTestImplementation LibsTest.androidx_test_espresso_web_andro_test
+    androidTestImplementation LibsTest.androidx_test_espresso_contrib_andro_test
+    androidTestImplementation LibsTest.androidx_test_espresso_idlingconcurrent_andro_test
+    androidTestImplementation LibsTest.androidx_test_espresso_idlingresource_andro_test
+    androidTestImplementation LibsTest.androidx_test_espresso_intent_andro_test
+
     //unit test suite
     testImplementation LibsTest.androidx_test_runner_test
     testImplementation LibsTest.androidx_test_rules_test
+
     testImplementation LibsTest.androidx_test_junit_test
     testImplementation  LibsTest.androidx_test_truth_test
     testImplementation  LibsTest.truth_test
+
     testImplementation LibsTest.androidx_test_espresso_core_test
     testImplementation LibsTest.androidx_test_espresso_web_test
+
     testImplementation LibsTest.robolectric_test
     testImplementation LibsTest.junit_4_test
 

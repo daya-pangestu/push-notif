@@ -11,8 +11,11 @@ repositories{
 }
 
 buildscript {
-    repositories { jcenter() }
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
     dependencies {
-        classpath("org.jacoco:org.jacoco.core:0.8.5")
+        classpath("org.jacoco:org.jacoco.core:0.8.6")
     }
 }

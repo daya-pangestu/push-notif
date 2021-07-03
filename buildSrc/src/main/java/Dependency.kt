@@ -9,9 +9,9 @@ object Versions{
 
     const val glide = "4.12.0"
     const val retrofit = "2.9.0"
-    const val hilt = "2.28-alpha"
+    const val hilt = "2.37"
     const val hilt_jetpack = "1.0.0-alpha01"
-    const val coroutine =  "1.3.8"
+    const val coroutine =  "1.5.0"
     const val navigation = "2.3.0"
     const val lifecycle =  "2.4.0-alpha02"
     const val room = "2.3.0"
@@ -61,25 +61,30 @@ object Libs {
     const val hilt_compiler_kapt = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     const val hilt_testing = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
 
-    const val hilt_viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt_jetpack}"
-    const val androidx_hilt_compiler_kapt = "androidx.hilt:hilt-compiler:${Versions.hilt_jetpack}"
+    //const val hilt_viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt_jetpack}" //gak usah
+    //const val androidx_hilt_compiler_kapt = "androidx.hilt:hilt-compiler:${Versions.hilt_jetpack}"
 
     const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 
-    const val navigation_runtime ="androidx.navigation:navigation-runtime:${Versions.navigation}"
-    const val navigation_fragment ="androidx.navigation:navigation-fragment:${Versions.navigation}" //gak usah
+    const val navigation_runtime ="androidx.navigation:navigation-runtime-ktx:${Versions.navigation}"
+//    const val navigation_fragment ="androidx.navigation:navigation-fragment:${Versions.navigation}" //gak usah
     const val navigation_fragment_ktx="androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     
-    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}" //gak usah
     const val lifecycle_viewmodel_savedstate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
     const val lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:2.2.0"
 
-    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
     const val room_compiler_kapt = "androidx.room:room-compiler:${Versions.room}"
     const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
+
+    //android-ktx
+    const val fragment_ktx = "androidx.fragment:fragment-ktx:"
+    const val lifecycle_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    const val livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
+    const val viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+
+
 
     const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewpager2}"
 
@@ -120,6 +125,9 @@ object LibsTest{
 
     const val androidx_test_core_ktx = "androidx.test:core:${VersionsTest.test_core}"
 
+    //fragment scenario
+    const val fragment_scenario_debug = "androidx.fragment:fragment-testing:1.3.5"
+
     //default test framework for instrumented test
     const val androidx_test_runner_andro_test =  "androidx.test:runner:1.3.0"
     const val androidx_test_rules_andro_test =  "androidx.test:rules:1.3.0"
@@ -127,6 +135,11 @@ object LibsTest{
     const val androidx_test_truth_andro_test = "androidx.test.ext:truth:1.3.0"
     const val androidx_test_espresso_core_andro_test = "androidx.test.espresso:espresso-core:3.3.0"
     const val androidx_test_espresso_web_andro_test = "androidx.test.espresso:espresso-web:3.3.0"
+    const val androidx_test_espresso_contrib_andro_test = "androidx.test.espresso:espresso-contrib:3.3.0"
+    const val androidx_test_espresso_intent_andro_test = "androidx.test.espresso:espresso-intent:3.3.0"
+    const val androidx_test_espresso_idlingconcurrent_andro_test = "androidx.test.espresso.idling:idling-concurrent:3.3.0"
+    const val androidx_test_espresso_idlingresource_andro_test = "androidx.test.espresso:espresso-idling-resource:3.3.0"
+
 
     //default test suite for unit test
     const val androidx_test_runner_test =  "androidx.test:runner:1.1.0"
