@@ -52,10 +52,10 @@ task jacocoRootReportDebug(type: JacocoReport, group: 'Coverage reports',depends
     classDirectories.from = files([
             tasks.getByPath("app:jacocoTestReportDebug").classDirectories,
             tasks.getByPath("shared:jacocoTestReportDebug").classDirectories])
-
-    executionData.from = files([
-            tasks.getByPath("app:jacocoTestReportDebug").executionData,
-            tasks.getByPath("shared:jacocoTestReportDebug").executionData])
+//
+//    executionData.from = files([
+//            tasks.getByPath("app:jacocoTestReportDebug").executionData,
+//            tasks.getByPath("shared:jacocoTestReportDebug").executionData])
 
     reports {
         html.enabled = true // human readable
