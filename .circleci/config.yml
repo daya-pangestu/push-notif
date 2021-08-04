@@ -5,27 +5,31 @@ workflows:
     jobs:
       - build:
           context: sonarcloud_env
+
+orbs:
+    android: circleci/android@1.0.3
+
 jobs:
   build:
     working_directory: ~/code
-    docker:
-      - image: circleci/android:api-29
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
+
+    executor:
+      name: android/android-machine
+      resource-class: large
+
+      steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - android/restore-build-cache
+      - android/restore-gradle-cache
 
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-      - run:
+      - android/save-build-cache
+      - android/save-gradle-cache
+
+      - android/run-tests:
           name: unit test on sonarqube
           command: ./gradlew sonarqube
 
