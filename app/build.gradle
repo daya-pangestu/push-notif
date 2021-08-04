@@ -128,7 +128,7 @@ dependencies {
     androidTestImplementation LibsTest.androidx_test_junit_test
 
     //truth
-    androidTestImplementation LibsTest.truth_andro_test
+    testImplementation LibsTest.truth_andro_test
     androidTestImplementation LibsTest.androidx_test_truth_test
 
     //test-runner
@@ -153,11 +153,9 @@ dependencies {
     testImplementation LibsTest.robolectric_test
     testImplementation LibsTest.junit_4_test
 
-
     //hilt test
     androidTestImplementation LibsTest.hilt_android_testing
     kaptAndroidTest LibsTest.hilt_android_compiler
-
 
     //coroutine test
     androidTestImplementation(LibsTest.coroutine_test){
