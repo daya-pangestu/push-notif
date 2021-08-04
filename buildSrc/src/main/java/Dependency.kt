@@ -55,6 +55,7 @@ object Libs {
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofit_converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofit_converter_moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
     const val retrofit_converter_scalar = "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
 
     const val hilt_android = "com.google.dagger:hilt-android:${Versions.hilt}"
@@ -134,7 +135,8 @@ object LibsTest{
 
     const val androidx_test_core_ktx = "androidx.test:core:${VersionsTest.test_core}"
 
-    //fragment scenario
+    //coroutine
+    const val coroutine_test =  "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3"
 
     //default test framework for instrumented test
     const val androidx_test_runner_test =  "androidx.test:runner:1.3.0"
@@ -165,7 +167,8 @@ object LibsTest{
     //flow
     const val turbine = "app.cash.turbine:turbine:0.5.1"
 
-
+    //instanttaskExecutorRule
+    const val instant_taskexecutor_rule = "androidx.arch.core:core-testing:2.1.0"
 
 
 
