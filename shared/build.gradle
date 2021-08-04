@@ -131,7 +131,6 @@ dependencies {
     testImplementation LibsTest.androidx_test_espresso_intent_test
 
     //unit test suite
-    testImplementation LibsTest.robolectric_test
     testImplementation LibsTest.junit_4_test
 
     //mockito
