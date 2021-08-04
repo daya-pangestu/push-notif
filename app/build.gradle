@@ -5,6 +5,7 @@ plugins {
     id  'kotlin-kapt'
     id  'jacoco'
     id  'com.browserstack.gradle'
+    id  'dagger.hilt.android.plugin'
 }
 
 android {
@@ -16,6 +17,7 @@ android {
         targetSdkVersion Versions.targetSdk
         versionCode Versions.code
         versionName Versions.name
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -115,7 +117,8 @@ dependencies {
     implementation Libs.navigation_runtime_ktx
     implementation Libs.navigation_test
 
-    //hilt, other related lib already provided by shared module
+    //hilt
+    implementation Libs.hilt_android
     kapt Libs.hilt_compiler_kapt
 
     //test-core
@@ -146,9 +149,18 @@ dependencies {
     //espresso-intent
     androidTestImplementation LibsTest.androidx_test_espresso_intent_test
 
+    //hilt test
     androidTestImplementation LibsTest.hilt_android_testing
     kaptAndroidTest LibsTest.hilt_android_compiler
 
+
+    //coroutine test
+    androidTestImplementation(LibsTest.coroutine_test){
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+    }
+
+    //livedata util test
+    androidTestImplementation LibsTest.instant_taskexecutor_rule
 }
 
 tasks.withType(Test) {
