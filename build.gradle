@@ -79,7 +79,7 @@ sonarqube {
     }
 }
 
-tasks.sonarqube.dependsOn "jacocoRootReportDebug"
+tasks.sonarqube.dependsOn "jacocoRootReport"
 
 //junitJacoco {
 //    jacocoVersion = '0.8.7' // type String
