@@ -7,6 +7,7 @@ plugins {
     id  'com.browserstack.gradle'
     id  'dagger.hilt.android.plugin'
 }
+apply from: '../jacoco.gradle'
 
 android {
     compileSdkVersion Versions.compilveSdk
