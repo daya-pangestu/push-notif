@@ -57,7 +57,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
        //todo save to firebase
     }
 
-
     companion object {
         private const val DOMAIN_ITT = "ittelkom-pwt.ac.id"
         private const val DOMAIN_st3 = "st3telkom.ac.id"

@@ -95,5 +95,4 @@
         app:layout_constraintStart_toEndOf="@+id/login_with_st3"
         app:layout_constraintTop_toTopOf="@+id/login_with_st3" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
