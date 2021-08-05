@@ -3,6 +3,8 @@ package com.daya.shared.taha.di
 import android.content.Context
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -36,4 +38,9 @@ object FirebaseModule {
         return Firebase.firestore(firebaseApp)
     }
 
+    @Provides
+    @Singleton
+    fun provideFireBaseAuth(firebaseApp: FirebaseApp): FirebaseAuth {
+        return Firebase.auth(firebaseApp)
+    }
 }

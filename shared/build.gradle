@@ -74,6 +74,7 @@ dependencies {
     api Libs.firebase_firestore
     api Libs.firebase_messaging
     api Libs.firebase_analytics
+    api Libs.firebase_storage
 
     //paging
     api Libs.paging3
