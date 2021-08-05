@@ -6,22 +6,22 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:name="com.daya.taha.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.daya.taha.SplashFragment"
+        android:name="com.daya.taha.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.daya.taha.LoginFragment"
+        android:name="com.daya.taha.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
 

@@ -1,9 +1,10 @@
-package com.daya.taha
+package com.daya.taha.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.daya.taha.R
 import com.daya.taha.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

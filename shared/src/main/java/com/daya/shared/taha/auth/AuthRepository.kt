@@ -11,8 +11,7 @@ class AuthRepository
     private val authDataSource: FireBaseAuthDataSource
 ) : IAuthRepository {
 
-    override suspend fun signInWithCredential(credential: AuthCredential): Boolean {
+    override suspend fun signInWithCredential(credential: AuthCredential): String {
         return authDataSource.signInWithCredential(credential)
     }
-
 }

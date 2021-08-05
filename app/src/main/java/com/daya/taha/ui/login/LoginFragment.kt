@@ -1,10 +1,15 @@
-package com.daya.taha
+package com.daya.taha.ui.login
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.daya.shared.taha.data.Resource
+import com.daya.taha.R
 import com.daya.taha.databinding.FragmentLoginBinding
 import com.daya.taha.util.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -12,11 +17,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private val binding by viewBinding<FragmentLoginBinding>()
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,6 +38,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             val intent = requestGSO(DOMAIN_ITT).signInIntent
             loginGso.launch(intent)
         }
+        observeLoginStatus()
     }
 
     private fun requestGSO(domain: String): GoogleSignInClient {
@@ -56,6 +66,31 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         context?.toast("login succes")
        //todo save to firebase
+        viewModel.login(credential)
+    }
+
+    fun observeLoginStatus() {
+        viewModel.loginStatus.observe(viewLifecycleOwner){
+
+            when (it) {
+                is Resource.Loading -> {
+                    //impossible status do nothing
+                    Timber.wtf("its should be impossible to be in loading state")
+                }
+                is Resource.Success -> {
+                    lifecycleScope.launch {
+                        val name = it.data.lowercase()
+                        context?.toast("welcome $name", Toast.LENGTH_LONG)
+                        //TODO intent to home
+                    }
+                }
+                is Resource.Error -> {
+                    val text = "login failed ${it.exceptionMessage}"
+                    context?.toast(text, Toast.LENGTH_LONG)
+                    Timber.e(text)
+                }
+            }
+        }
     }
 
     companion object {

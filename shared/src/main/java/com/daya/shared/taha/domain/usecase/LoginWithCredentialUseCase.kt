@@ -11,8 +11,8 @@ class LoginWithCredentialUseCase
 constructor(
     private val repository: AuthRepository,
     @IoDispatcher coroutineDispatcher: CoroutineDispatcher
-) :UseCase<AuthCredential,Boolean>(coroutineDispatcher) {
-    override suspend fun execute(param: AuthCredential): Boolean {
+) :UseCase<AuthCredential,String>(coroutineDispatcher) {
+    override suspend fun execute(param: AuthCredential) : String {
         return repository.signInWithCredential(param)
     }
 }
