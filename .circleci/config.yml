@@ -50,4 +50,4 @@ workflows:
   sample:
     jobs:
       - build-and-test:
-        context: sonarcloud_env
+          context: sonarcloud_env
