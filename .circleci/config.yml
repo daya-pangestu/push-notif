@@ -47,6 +47,7 @@ jobs:
           destination: artifact-file
 
 workflows:
-  sample:
+  cloud-test:
     jobs:
-      - build-and-test
+      - build-and-test:
+        context: sonarcloud_env
