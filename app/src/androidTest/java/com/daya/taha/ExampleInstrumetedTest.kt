@@ -7,7 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
-
+//need dumy test for jacoco not fail
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     @Test

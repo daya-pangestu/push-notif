@@ -103,6 +103,7 @@ dependencies {
 
     //glide
     implementation Libs.glide
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.glide_compiler_kapt
 
     //lifecycle
