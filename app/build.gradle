@@ -1,13 +1,16 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'jacoco'
-apply plugin: 'com.browserstack.gradle'
+plugins {
+    id  'com.android.application'
+    id  'kotlin-android'
+    id  'kotlin-parcelize'
+    id  'kotlin-kapt'
+    id  'jacoco'
+    id  'com.browserstack.gradle'
+    id  'dagger.hilt.android.plugin'
+}
+apply from: '../jacoco.gradle'
+
 android {
     compileSdkVersion Versions.compilveSdk
-    buildToolsVersion Versions.buildTool
 
     defaultConfig {
         applicationId "com.daya.taha"
@@ -15,6 +18,7 @@ android {
         targetSdkVersion Versions.targetSdk
         versionCode Versions.code
         versionName Versions.name
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -58,64 +62,32 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes true
+
+    //see here : https://github.com/google/dagger/issues/2684
+    javacOptions {
+        // These options are normally set automatically via the Hilt Gradle plugin, but we
+        // set them manually to workaround a bug in the Kotlin 1.5.20
+        option("-Adagger.fastInit=ENABLED")
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
+}
 
 dependencies {
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(path: ':shared')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation LibsCommon.core_ktx
     implementation LibsCommon.appcompat
     implementation LibsCommon.material
-
-
-    androidTestImplementation LibsTest.androidx_test_core_ktx
-    //ui test suite
-    androidTestImplementation LibsTest.androidx_test_runner_andro_test
-    androidTestImplementation LibsTest.androidx_test_rules_andro_test
-    androidTestImplementation LibsTest.androidx_test_junit_andro_test
-    androidTestImplementation LibsTest.androidx_test_truth_andro_test
-    androidTestImplementation LibsTest.truth_andro_test
-    androidTestImplementation LibsTest.androidx_test_espresso_core_andro_test
-    androidTestImplementation LibsTest.androidx_test_espresso_web_andro_test
-    //unit test suite
-    testImplementation LibsTest.androidx_test_runner_test
-    testImplementation LibsTest.androidx_test_rules_test
-    testImplementation LibsTest.androidx_test_junit_test
-    testImplementation LibsTest.androidx_test_truth_test
-    testImplementation LibsTest.truth_test
-    testImplementation LibsTest.androidx_test_espresso_core_test
-    testImplementation LibsTest.androidx_test_espresso_web_test
-    testImplementation LibsTest.robolectric_test
-    testImplementation LibsTest.junit_4_test
-
     implementation Libs.constaraint_layout
 
-    //navigation
-    implementation Libs.navigation_fragment
-    implementation Libs.navigation_fragment_ktx
-    implementation Libs.navigation_runtime
-    implementation Libs.navigation_ui_ktx
-
-    //lifecycle
-    implementation Libs.lifecycle_runtime_ktx
-    implementation Libs.lifecycle_livedata_ktx
-    implementation Libs.lifecycle_common_java8
-    implementation Libs.lifecycle_viewmodel_ktx
-
-    //hilt
-    implementation Libs.hilt_android
-    kapt Libs.hilt_compiler_kapt
-    implementation Libs.hilt_viewmodel
-    kapt Libs.androidx_hilt_compiler_kapt
-
-    //room db
-    kapt Libs.room_compiler_kapt
-    implementation Libs.room_ktx
-    implementation Libs.room_runtime
-
-    //coroutine
-    implementation Libs.coroutine
+    //jetpack
+    implementation Libs.activity_ktx
+    implementation Libs.fragment_ktx
 
     //viewpager2
     implementation Libs.viewpager2
@@ -123,6 +95,76 @@ dependencies {
     //viewbinding simplify
     implementation Libs.viewbinding_delegate
 
+    //flexbox
+    implementation Libs.flexbox
+
+    //google login
+    implementation Libs.play_service_auth
+
+    //glide
+    implementation Libs.glide
+    kapt Libs.glide_compiler_kapt
+
+    //lifecycle
+    implementation Libs.lifecycle_viewmodel_savedstate
+    implementation Libs.lifecycle_common_java8
+    implementation Libs.lifecycle_ktx
+    implementation Libs.viewmodel_ktx
+    implementation Libs.livedata_ktx
+
+    //navigation
+    implementation Libs.navigation_fragment_ktx
+    implementation Libs.navigation_ui_ktx
+    implementation Libs.navigation_runtime_ktx
+    implementation Libs.navigation_test
+
+    //hilt
+    implementation Libs.hilt_android
+    kapt Libs.hilt_compiler_kapt
+
+    //test-core
+    androidTestImplementation LibsTest.androidx_test_core_ktx
+
+    //junit
+    androidTestImplementation LibsTest.androidx_test_junit_test
+
+    //truth
+    testImplementation LibsTest.truth_andro_test
+    androidTestImplementation LibsTest.androidx_test_truth_test
+
+    //test-runner
+    androidTestImplementation LibsTest.androidx_test_runner_test
+
+    //test-rules
+    androidTestImplementation LibsTest.androidx_test_rules_test
+
+    //espresso-core
+    androidTestImplementation LibsTest.androidx_test_espresso_core_test
+
+    //espresso-web
+    androidTestImplementation LibsTest.androidx_test_espresso_web_test
+
+    //espresso-contrib
+    androidTestImplementation LibsTest.androidx_test_espresso_contrib_test
+
+    //espresso-intent
+    androidTestImplementation LibsTest.androidx_test_espresso_intent_test
+
+    //unit test suite
+    testImplementation LibsTest.robolectric_test
+    testImplementation LibsTest.junit_4_test
+
+    //hilt test
+    androidTestImplementation LibsTest.hilt_android_testing
+    kaptAndroidTest LibsTest.hilt_android_compiler
+
+    //coroutine test
+    androidTestImplementation(LibsTest.coroutine_test){
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+    }
+
+    //livedata util test
+    androidTestImplementation LibsTest.instant_taskexecutor_rule
 }
 
 tasks.withType(Test) {

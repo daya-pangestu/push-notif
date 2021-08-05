@@ -2,11 +2,13 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'jacoco'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
+apply from: '../jacoco.gradle'
 
 android {
     compileSdkVersion Versions.compilveSdk
-    buildToolsVersion Versions.buildTool
 
     defaultConfig {
         minSdkVersion Versions.minSdk
@@ -47,6 +49,18 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes true
+
+    //see here : https://github.com/google/dagger/issues/2684
+    javacOptions {
+        // These options are normally set automatically via the Hilt Gradle plugin, but we
+        // set them manually to workaround a bug in the Kotlin 1.5.20
+        option("-Adagger.fastInit=ENABLED")
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
+}
+
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -54,28 +68,89 @@ dependencies {
     implementation LibsCommon.appcompat
     implementation LibsCommon.material
 
-    //ui test suite
-    androidTestImplementation LibsTest.androidx_test_runner_andro_test
-    androidTestImplementation LibsTest.androidx_test_rules_andro_test
-    androidTestImplementation LibsTest.androidx_test_junit_andro_test
-    androidTestImplementation  LibsTest.androidx_test_truth_andro_test
-    androidTestImplementation  LibsTest.truth_andro_test
-    androidTestImplementation LibsTest.androidx_test_espresso_core_andro_test
-    androidTestImplementation LibsTest.androidx_test_espresso_web_andro_test
-    //unit test suite
-    testImplementation LibsTest.androidx_test_runner_test
-    testImplementation LibsTest.androidx_test_rules_test
-    testImplementation LibsTest.androidx_test_junit_test
-    testImplementation  LibsTest.androidx_test_truth_test
-    testImplementation  LibsTest.truth_test
-    testImplementation LibsTest.androidx_test_espresso_core_test
-    testImplementation LibsTest.androidx_test_espresso_web_test
-    testImplementation LibsTest.robolectric_test
-    testImplementation LibsTest.junit_4_test
+    //firebase
+    implementation platform(Libs.firebase_bom_platfrom)
+    implementation Libs.firebase_auth
+    implementation Libs.firebase_firestore
+    implementation Libs.firebase_messaging
+    implementation Libs.firebase_analytics
+
+    //paging
+    api Libs.paging3
+
+    //retrofit
+    implementation Libs.retrofit
+    implementation Libs.retrofit_converter_gson
+    implementation Libs.retrofit_converter_scalar
+
+    //coroutine
+    api Libs.coroutine
+
+    //room
+    implementation Libs.room_runtime
+    kapt Libs.room_compiler_kapt
+    implementation Libs.room_ktx
+    testImplementation Libs.room_testing_test
 
     api Libs.dataStore
 
     api Libs.store4
+
+    //hilt
+    implementation Libs.hilt_android
+    kapt Libs.hilt_compiler_kapt //also do this in app
+
+    debugApi LibsTest.androidx_test_core_ktx
+
+    //test-core
+    debugApi Libs.fragment_scenario_debug
+    testImplementation LibsTest.androidx_test_core_ktx
+
+    //junit
+    testImplementation LibsTest.androidx_test_junit_test
+
+    //truth
+    testImplementation LibsTest.truth_test
+    testImplementation LibsTest.androidx_test_truth_test
+
+    //test-runner
+    testImplementation LibsTest.androidx_test_runner_test
+
+    //test-rules
+    testImplementation LibsTest.androidx_test_rules_test
+
+    //espresso-core
+    testImplementation LibsTest.androidx_test_espresso_core_test
+
+    //espresso-web
+    testImplementation LibsTest.androidx_test_espresso_web_test
+
+    //espresso-contrib
+    testImplementation LibsTest.androidx_test_espresso_contrib_test
+
+    //espresso-intent
+    testImplementation LibsTest.androidx_test_espresso_intent_test
+
+    //unit test suite
+    testImplementation LibsTest.junit_4_test
+
+    //mockito
+    testImplementation LibsTest.mockito_test
+    testImplementation LibsTest.mockito_kotlin_test
+    testImplementation LibsTest.mockito_inline_test
+
+    //hilt
+    testImplementation LibsTest.hilt_android_testing
+    kaptTest LibsTest.hilt_android_compiler
+
+    testImplementation LibsTest.mockwebserver
+
+    //flow test
+    testImplementation LibsTest.turbine
+
+    //coroutine test
+    testImplementation LibsTest.coroutine_test
+
 }
 
 tasks.withType(Test) {

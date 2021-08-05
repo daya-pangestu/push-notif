@@ -1,0 +1,50 @@
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+        csv.enabled = true
+    }
+
+    def fileFilter = [
+            '**/R.class',
+            '**/BR.*',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/databinding*.*',
+            '**/*_MembersInjector.class',
+            '**/Dagger*Component.class',
+            '**/Dagger*Component$Builder.class',
+            '**/*Module_*Factory.class',
+            '**/di/module/*',
+            '**/*_Factory*.*',
+            '**/*Module*.*',
+            '**/*Dagger*.*',
+            '**/*Hilt*.*',
+            '**/codegen*.*',
+            '**/*MapperImpl*.*',
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/BuildConfig.*',
+            '**/*Component*.*',
+            '**/*$Lambda$*.*',
+            '**/*Companion*.*',
+            '**/*_Provide*Factory*.*',
+            '**/*Extensions*.*',
+            '**/*$Result.*',
+            '**/*$Result$*.*',
+            '**/*$Resource$.*',
+    ]
+    def debugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(files([debugTree]))
+    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ]))
+}

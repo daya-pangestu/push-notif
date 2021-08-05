@@ -4,15 +4,16 @@ plugins {
 }
 
 repositories{
-    jcenter()
     google()
     mavenCentral()
 
 }
 
 buildscript {
-    repositories { jcenter() }
+    repositories {
+        mavenCentral()
+    }
     dependencies {
-        classpath("org.jacoco:org.jacoco.core:0.8.5")
+        classpath("org.jacoco:org.jacoco.core:0.8.7")
     }
 }
