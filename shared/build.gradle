@@ -69,14 +69,18 @@ dependencies {
     implementation LibsCommon.material
 
     //firebase
-    implementation platform(Libs.firebase_bom_platfrom)
-    implementation Libs.firebase_auth
-    implementation Libs.firebase_firestore
-    implementation Libs.firebase_messaging
-    implementation Libs.firebase_analytics
+    api platform(Libs.firebase_bom_platfrom)
+    api Libs.firebase_auth
+    api Libs.firebase_firestore
+    api Libs.firebase_messaging
+    api Libs.firebase_analytics
+    api Libs.firebase_storage
 
     //paging
     api Libs.paging3
+
+    //timber
+    api LibsUtils.timber
 
     //retrofit
     implementation Libs.retrofit
