@@ -4,7 +4,7 @@ version: 2.1
 orbs:
   android: circleci/android@1.0.3
   codecov: codecov/codecov@1.2.5
-
+  jira: circleci/jira@1.0.5
 jobs:
 
   build-and-test:
@@ -51,3 +51,5 @@ workflows:
     jobs:
       - build-and-test:
           context: sonarcloud_env
+          post-steps:
+            - jira/notify
