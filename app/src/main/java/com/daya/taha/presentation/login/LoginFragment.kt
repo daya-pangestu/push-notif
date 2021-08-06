@@ -1,4 +1,4 @@
-package com.daya.taha.ui.login
+package com.daya.taha.presentation.login
 
 import android.os.Bundle
 import android.view.View
@@ -68,7 +68,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         viewModel.login(credential)
     }
 
-    fun observeLoginStatus() {
+    private fun observeLoginStatus() {
         viewModel.loginStatus.observe(viewLifecycleOwner){
 
             when (it) {

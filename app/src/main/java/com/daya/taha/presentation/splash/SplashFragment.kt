@@ -1,4 +1,4 @@
-package com.daya.taha.ui.splash
+package com.daya.taha.presentation.splash
 
 import android.os.Bundle
 import android.view.View

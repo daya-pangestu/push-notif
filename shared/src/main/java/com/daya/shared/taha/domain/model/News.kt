@@ -17,6 +17,12 @@ data class NewsNet(
 
 
 data class News(
-    val senderId: String? = ""
-//TODO completing this
+    val senderId: String? = "",
+    val title: String  = "",
+    val description: String = "",
+    val urlAccess: String = "",
+    var urlImage: String = "",
+    val status: String = "requested",
+    val topics: List<Topic> = emptyList(),
+    val broadcastRequested: Date? = null
 )

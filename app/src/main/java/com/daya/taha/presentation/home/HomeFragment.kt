@@ -1,4 +1,4 @@
-package com.daya.taha.ui.home
+package com.daya.taha.presentation.home
 
 import android.os.Bundle
 import android.view.Menu
@@ -6,7 +6,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import by.kirich1409.viewbindingdelegate.viewBinding

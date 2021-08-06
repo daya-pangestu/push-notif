@@ -1,4 +1,4 @@
-package com.daya.taha.ui.splash
+package com.daya.taha.presentation.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
