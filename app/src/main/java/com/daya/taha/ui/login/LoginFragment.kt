@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.daya.shared.taha.data.Resource
 import com.daya.taha.R
@@ -64,8 +65,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        context?.toast("login succes")
-       //todo save to firebase
         viewModel.login(credential)
     }
 
@@ -81,7 +80,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     lifecycleScope.launch {
                         val name = it.data.lowercase()
                         context?.toast("welcome $name", Toast.LENGTH_LONG)
-                        //TODO intent to home
+                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                 }
                 is Resource.Error -> {

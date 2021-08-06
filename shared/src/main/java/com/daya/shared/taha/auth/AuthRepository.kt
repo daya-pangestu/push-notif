@@ -14,4 +14,8 @@ class AuthRepository
     override suspend fun signInWithCredential(credential: AuthCredential): String {
         return authDataSource.signInWithCredential(credential)
     }
+
+    override fun isUserLoggedIn(): Boolean {
+        return  authDataSource.isUserLoggedIn()
+    }
 }

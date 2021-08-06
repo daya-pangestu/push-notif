@@ -11,12 +11,12 @@ import kotlin.coroutines.resumeWithException
 
 interface AuthDataSource{
     suspend fun signInWithCredential(credential : AuthCredential) : String
+    fun isUserLoggedIn() : Boolean
 }
 
 class FireBaseAuthDataSource
 @Inject
 constructor(
-    private val fireStore: FirebaseFirestore,
     private val auth: FirebaseAuth
 ) : AuthDataSource {
 
@@ -32,4 +32,7 @@ constructor(
             }
     }
 
+    override fun isUserLoggedIn(): Boolean {
+        return auth.currentUser != null
+    }
 }
