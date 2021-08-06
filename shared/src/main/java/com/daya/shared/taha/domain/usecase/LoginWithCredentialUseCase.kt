@@ -1,6 +1,6 @@
 package com.daya.shared.taha.domain.usecase
 
-import com.daya.shared.taha.auth.AuthRepository
+import com.daya.shared.taha.data.auth.AuthRepository
 import com.daya.shared.taha.di.coroutine.IoDispatcher
 import com.google.firebase.auth.AuthCredential
 import kotlinx.coroutines.CoroutineDispatcher

@@ -1,4 +1,4 @@
-package com.daya.shared.taha.auth
+package com.daya.shared.taha.data.auth
 
 import com.daya.shared.taha.domain.repository.IAuthRepository
 import com.google.firebase.auth.AuthCredential

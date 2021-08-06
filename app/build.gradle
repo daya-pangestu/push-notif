@@ -83,6 +83,9 @@ dependencies {
     implementation LibsCommon.material
     implementation Libs.constaraint_layout
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
     //jetpack
     implementation Libs.activity_ktx
     implementation Libs.fragment_ktx
@@ -101,7 +104,6 @@ dependencies {
 
     //glide
     implementation Libs.glide
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.glide_compiler_kapt
 
     //lifecycle

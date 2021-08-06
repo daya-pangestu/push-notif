@@ -43,5 +43,10 @@
             app:popUpToInclusive="true"
             />
     </fragment>
+    <fragment
+        android:id="@+id/broadCastFragment"
+        android:name="com.daya.taha.ui.broadcast.BroadCastFragment"
+        android:label="broad_cast_fragment"
+        tools:layout="@layout/fragment_broadcast" />
 
 </navigation>
