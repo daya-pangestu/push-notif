@@ -1,13 +1,18 @@
 package com.daya.taha.presentation.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.daya.shared.taha.data.Resource
+import com.daya.shared.taha.domain.usecase.LogOutUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HomeViewModel: ViewModel() {
+@HiltViewModel
+class HomeViewModel
+@Inject constructor(
+    private val logOutUseCase: LogOutUseCase
+): ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    suspend fun logOut() : Resource<Unit> {
+        return logOutUseCase(Unit)
     }
-    val text: LiveData<String> = _text
 }
