@@ -9,14 +9,12 @@ object Dummy{
 val topicNet: List<TopicNet>
     get() = (1..3).map {
             TopicNet(
-                topicId = faker.phoneNumber.unique.countryCode(),
+                topicId = faker.phoneNumber.countryCode(),
                 topicName = faker.book.title(),
                 isUnsubscribeAble = false,
                 isUserSubscribed = true
             )
         }.toList()
-
-
 
 private val faker = Faker()
 }
