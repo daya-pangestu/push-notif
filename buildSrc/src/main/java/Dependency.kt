@@ -173,6 +173,8 @@ object LibsTest{
     const val instant_taskexecutor_rule = "androidx.arch.core:core-testing:2.1.0"
 
 
+    //faker
+    const val kotlin_faker = "io.github.serpro69:kotlin-faker:1.7.1"
 
 
 

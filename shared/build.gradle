@@ -158,6 +158,10 @@ dependencies {
     //coroutine test
     testImplementation LibsTest.coroutine_test
 
+    testImplementation LibsTest.kotlin_faker
+
+    testImplementation LibsTest.instant_taskexecutor_rule
+
 }
 
 tasks.withType(Test) {
