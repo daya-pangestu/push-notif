@@ -8,7 +8,7 @@ import javax.inject.Singleton
 @Singleton
 class AuthRepository
 @Inject constructor(
-    private val authDataSource: FireBaseAuthDataSource
+    private val authDataSource: AuthDataSource
 ) : IAuthRepository {
 
     override suspend fun signInWithCredential(credential: AuthCredential): String {
