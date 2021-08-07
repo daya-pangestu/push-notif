@@ -7,4 +7,8 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_campaign_24"/>
 
+    <item android:id="@+id/action_logout"
+        android:title="logout"
+        app:showAsAction="collapseActionView"/>
+
 </menu>

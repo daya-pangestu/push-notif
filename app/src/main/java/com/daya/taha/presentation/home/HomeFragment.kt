@@ -30,6 +30,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController()
+
+        when (item.itemId) {
+            R.id.action_logout ->{
+                navController.navigate(R.id.action_homeFragment_to_loginFragment)
+                return true
+            }
+        }
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
 
     }
