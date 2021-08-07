@@ -37,6 +37,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
             '**/*$Result.*',
             '**/*$Result$*.*',
             '**/*$Resource$.*',
+            '**/DataClassMapper.*',
     ]
     def debugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
