@@ -18,4 +18,8 @@ class AuthRepository
     override fun isUserLoggedIn(): Boolean {
         return  authDataSource.isUserLoggedIn()
     }
+
+    override fun logginOutCurrentUser() {
+        authDataSource.loggingOutCurrentUSer()
+    }
 }

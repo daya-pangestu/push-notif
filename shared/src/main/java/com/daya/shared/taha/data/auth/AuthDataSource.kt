@@ -11,6 +11,7 @@ import kotlin.coroutines.resumeWithException
 interface AuthDataSource{
     suspend fun signInWithCredential(credential : AuthCredential) : String
     fun isUserLoggedIn() : Boolean
+    fun loggingOutCurrentUSer()
 }
 
 class FireBaseAuthDataSource
@@ -33,5 +34,9 @@ constructor(
 
     override fun isUserLoggedIn(): Boolean {
         return auth.currentUser != null
+    }
+
+    override fun loggingOutCurrentUSer(){
+        auth.signOut()
     }
 }
