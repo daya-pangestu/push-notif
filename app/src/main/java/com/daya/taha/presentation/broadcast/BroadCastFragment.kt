@@ -76,10 +76,10 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
 
             val chosenTopics = viewModel.getChosenTopic()
 
-//            if (chosenTopics.isEmpty()) {
-//                Toast.makeText(it.context, "atleast 1 chip must be checked", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
+            if (chosenTopics.isEmpty()) {
+                Toast.makeText(it.context, "atleast 1 chip must be checked", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if (titleText.isEmpty()) {
                 Toast.makeText(it.context, "title mustn't empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
