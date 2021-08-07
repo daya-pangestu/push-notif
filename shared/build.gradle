@@ -77,6 +77,7 @@ dependencies {
     api Libs.firebase_messaging
     api Libs.firebase_analytics
     api Libs.firebase_storage
+    implementation Libs.kotlinx_coroutines_play_service
 
     //paging
     api Libs.paging3

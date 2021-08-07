@@ -11,3 +11,10 @@ data class Topic(
     val isUnsubscribeAble: Boolean = false
 
 ) : Parcelable
+
+data class TopicNet(
+    val topicId : String,
+    val topicName : String,
+    var isUserSubscribed: Boolean = false,
+    var isUnsubscribeAble : Boolean = false
+)

@@ -104,10 +104,12 @@ object Libs {
     const val firebase_config = "com.google.firebase:firebase-config-ktx" //:${Versions.firebaseConfig}
     const val firebase_firestore = "com.google.firebase:firebase-firestore-ktx" //:${Versions.firebaseFirestore}
     const val firebase_functions = "com.google.firebase:firebase-functions-ktx" //:${Versions.firebaseFunctions}
-    const val firebase_messaging = "com.google.firebase:firebase-messaging" //:${Versions.firebaseMessaging}
+    const val firebase_messaging = "com.google.firebase:firebase-messaging-ktx" //:${Versions.firebaseMessaging}
     const val firebase_ui_auth = "com.firebaseui:firebase-ui-auth" //:${Versions.firebaseUi}
     const val firebase_crashlytics = "com.google.firebase:firebase-crashlytics-ktx" //:${Versions.firebaseUi}
     const val firebase_storage = "com.google.firebase:firebase-storage-ktx"
+
+    const val kotlinx_coroutines_play_service = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.0-native-mt"
 
     const val viewbinding_delegate =
         "com.github.kirich1409:viewbindingpropertydelegate:${Versions.viewbinding_delegate}"
