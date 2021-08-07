@@ -156,8 +156,8 @@ object LibsTest{
     //default test suite for unit test
     const val robolectric_test = "org.robolectric:robolectric:4.4"
     const val mockito_test = "org.mockito:mockito-core:3.8.0"
-    const val mockito_kotlin_test = "org.mockito:mockito-core:3.8.0"
-    const val mockito_inline_test = "org.mockito:mockito-core:3.8.0"
+    const val mockito_kotlin_test = "org.mockito.kotlin:mockito-kotlin:3.2.0"
+    const val mockito_inline_test = "org.mockito:mockito-inline:3.8.0"
 
     //mockwebserver
     const val mockwebserver = "com.squareup.okhttp3:mockwebserver:4.9.1"
