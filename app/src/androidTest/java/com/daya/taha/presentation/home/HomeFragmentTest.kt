@@ -1,12 +1,11 @@
-package com.daya.taha.presentation.splash
+package com.daya.taha.presentation.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.daya.taha.R
 import com.daya.taha.util.launchFragmentInHiltContainer
@@ -19,8 +18,7 @@ import org.junit.Test
 
 
 @HiltAndroidTest
-class SplashFragmentTest {
-
+class HomeFragmentTest{
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
@@ -33,16 +31,18 @@ class SplashFragmentTest {
     }
 
     @Test
-    fun splashFragment_display_logo() {
+    fun homeFragment_item_toolbar_navigate_to_broadcastFragment() {
         val navController = TestNavHostController(
             ApplicationProvider.getApplicationContext())
 
-        launchFragmentInHiltContainer<SplashFragment> {
+        launchFragmentInHiltContainer<HomeFragment> {
             navController.setGraph(R.navigation.nav_graph)
             Navigation.setViewNavController(this.requireView(), navController)
         }
-        onView(withId(R.id.logo)).check(matches(isDisplayed()))
 
-        assertThat(navController.currentDestination?.id).isEqualTo(R.id.splashFragment)
+        onView(withId(R.id.broadCastFragment))
+            .perform(click())
+
+        assertThat(navController.currentDestination?.id).isEqualTo(R.id.broadCastFragment)
     }
 }
