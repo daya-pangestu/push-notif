@@ -3,10 +3,11 @@ package com.daya.shared.taha.domain.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.data.auth.AuthRepository
-import com.daya.shared.taha.domain.TestAuthDataSource
+import com.daya.shared.taha.testutil.fake.FakeAuthDataSource
 import com.daya.shared.taha.domain.repository.IAuthRepository
 import com.daya.shared.taha.testutil.Dummy
 import com.daya.shared.taha.testutil.MainCoroutineRule
+import com.daya.shared.taha.testutil.fake.unSuccesAuthRepository
 import com.daya.shared.taha.testutil.runBlockingTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertTrue
@@ -41,20 +42,7 @@ class LoginWIthCredentialUseCase {
     }
 
     private val succesAuthRepository = AuthRepository(
-        TestAuthDataSource(dummyDIsplayName)
+        FakeAuthDataSource(dummyDIsplayName)
     )
 
-    private val unSuccesAuthRepository = object : IAuthRepository {
-        override suspend fun signInWithCredential(idToken : String): String {
-            throw Exception("Error!")
-        }
-
-        override fun isUserLoggedIn(): Boolean {
-            throw Exception("Error!")
-        }
-
-        override fun logginOutCurrentUser() {
-            throw Exception("Error!")
-        }
-    }
 }
