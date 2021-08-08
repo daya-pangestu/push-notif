@@ -17,7 +17,6 @@ class TopicRepositoryTest {
 
     private val dummyTopicNet = Dummy.topicNet
 
-
     @Before
     fun setUp() {
         topicRepository = TopicRepository(firebaseTopicDataSource)

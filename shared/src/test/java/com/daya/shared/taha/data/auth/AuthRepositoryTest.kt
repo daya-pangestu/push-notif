@@ -1,8 +1,8 @@
 package com.daya.shared.taha.data.auth
 
 
+import com.daya.shared.taha.testutil.Dummy
 import com.google.common.truth.Truth.assertThat
-import com.google.firebase.auth.AuthCredential
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -13,8 +13,10 @@ import org.mockito.kotlin.whenever
 class AuthRepositoryTest {
 
     private val authDataSource: FireBaseAuthDataSource = mock()
-    private val credential : AuthCredential = mock()
     lateinit var authRepository : AuthRepository
+
+    val dummyIdToken = Dummy.faker.idNumber.invalid()
+    val dummyDIsplayName = Dummy.faker.name.name()
 
     @Before
     fun setUp() {
@@ -23,11 +25,11 @@ class AuthRepositoryTest {
 
     @Test
     fun signInWithCredential() = runBlocking {
-        whenever(authDataSource.signInWithCredential(credential)).thenReturn("user")
+        whenever(authDataSource.signInWithCredential(dummyIdToken)).thenReturn(dummyDIsplayName)
 
-        val actualResult = authRepository.signInWithCredential(credential)
+        val actualResult = authRepository.signInWithCredential(dummyIdToken)
 
-        assertThat(actualResult).isEqualTo("user")
+        assertThat(actualResult).isEqualTo(dummyDIsplayName)
     }
 
     @Test

@@ -16,5 +16,5 @@ val topicNet: List<TopicNet>
             )
         }.toList()
 
-private val faker = Faker()
+    val faker = Faker()
 }
