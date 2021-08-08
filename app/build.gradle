@@ -20,7 +20,7 @@ android {
         versionName Versions.name
         multiDexEnabled true
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.daya.taha.util.CustomTestRunner"
     }
 
     buildTypes {
