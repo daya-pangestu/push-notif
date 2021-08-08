@@ -125,22 +125,27 @@ dependencies {
 
     //test-core
     androidTestImplementation LibsTest.androidx_test_core_ktx
+    testImplementation LibsTest.androidx_test_core_ktx
 
     //junit
     androidTestImplementation LibsTest.androidx_test_junit_test
+    testImplementation LibsTest.androidx_test_junit_test
 
     //truth
-    testImplementation LibsTest.truth_andro_test
     androidTestImplementation LibsTest.androidx_test_truth_test
+    testImplementation LibsTest.androidx_test_truth_test
 
     //test-runner
     androidTestImplementation LibsTest.androidx_test_runner_test
+    testImplementation LibsTest.androidx_test_runner_test
 
     //test-rules
     androidTestImplementation LibsTest.androidx_test_rules_test
+    testImplementation LibsTest.androidx_test_rules_test
 
     //espresso-core
     androidTestImplementation LibsTest.androidx_test_espresso_core_test
+    testImplementation LibsTest.androidx_test_espresso_core_test
 
     //espresso-web
     androidTestImplementation LibsTest.androidx_test_espresso_web_test
@@ -150,10 +155,16 @@ dependencies {
 
     //espresso-intent
     androidTestImplementation LibsTest.androidx_test_espresso_intent_test
+    testImplementation LibsTest.androidx_test_espresso_contrib_test
 
     //unit test suite
     testImplementation LibsTest.robolectric_test
     testImplementation LibsTest.junit_4_test
+
+    //mockito
+    testImplementation LibsTest.mockito_test
+    testImplementation LibsTest.mockito_kotlin_test
+    testImplementation LibsTest.mockito_inline_test
 
     //hilt test
     androidTestImplementation LibsTest.hilt_android_testing

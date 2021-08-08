@@ -117,7 +117,6 @@ dependencies {
     testImplementation LibsTest.androidx_test_junit_test
 
     //truth
-    testImplementation LibsTest.truth_test
     testImplementation LibsTest.androidx_test_truth_test
 
     //test-runner
