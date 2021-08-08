@@ -46,7 +46,6 @@ class BroadCastViewModel
 
     fun getChosenTopic() = _chosenTopic
 
-
     private val _uriImageLiveData = MutableLiveData<Uri?>()
     fun setUriImage(uriImage: Uri) {
         _uriImageLiveData.value = uriImage

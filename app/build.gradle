@@ -176,6 +176,8 @@ dependencies {
     }
     testImplementation LibsTest.coroutine_test
 
+    testImplementation LibsTest.kotlin_faker
+
     //livedata util test
     androidTestImplementation LibsTest.instant_taskexecutor_rule
     testImplementation LibsTest.instant_taskexecutor_rule
