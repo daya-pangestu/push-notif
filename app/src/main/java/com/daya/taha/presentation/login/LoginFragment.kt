@@ -64,8 +64,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        viewModel.login(credential)
+        viewModel.login(idToken)
     }
 
     private fun observeLoginStatus() {

@@ -1,7 +1,7 @@
 package com.daya.shared.taha.data.auth
 
-import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.suspendCancellableCoroutine
 import timber.log.Timber
 import javax.inject.Inject
@@ -9,7 +9,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 interface AuthDataSource{
-    suspend fun signInWithCredential(credential : AuthCredential) : String
+    suspend fun signInWithCredential(idToken : String) : String
     fun isUserLoggedIn() : Boolean
     fun loggingOutCurrentUSer()
 }
@@ -20,7 +20,8 @@ constructor(
     private val auth: FirebaseAuth
 ) : AuthDataSource {
 
-    override suspend fun signInWithCredential(credential: AuthCredential) :String = suspendCancellableCoroutine { continuation ->
+    override suspend fun signInWithCredential(idToken :String) :String = suspendCancellableCoroutine { continuation ->
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnSuccessListener {
                 val name = it.user?.displayName ?: return@addOnSuccessListener continuation.resume("user")

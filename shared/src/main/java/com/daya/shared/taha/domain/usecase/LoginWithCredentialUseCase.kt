@@ -9,10 +9,10 @@ import javax.inject.Inject
 class LoginWithCredentialUseCase
 @Inject
 constructor(
+    @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
     private val repository: IAuthRepository,
-    @IoDispatcher coroutineDispatcher: CoroutineDispatcher
-) :UseCase<AuthCredential,String>(coroutineDispatcher) {
-    override suspend fun execute(param: AuthCredential) : String {
+) :UseCase<String,String>(coroutineDispatcher) {
+    override suspend fun execute(param: String) : String {
         return repository.signInWithCredential(param)
     }
 }

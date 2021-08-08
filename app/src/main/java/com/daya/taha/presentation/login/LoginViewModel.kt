@@ -3,7 +3,6 @@ package com.daya.taha.presentation.login
 import androidx.lifecycle.*
 import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.domain.usecase.LoginWithCredentialUseCase
-import com.google.firebase.auth.AuthCredential
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,7 +16,7 @@ constructor(
     private val _loginStatus = MutableLiveData<Resource<String>>()
     val loginStatus = _loginStatus
 
-    fun login(credential: AuthCredential){
+    fun login(credential: String){
         viewModelScope.launch {
             val resStatus = loginWithCredentialUseCase(credential)
             _loginStatus.value = resStatus

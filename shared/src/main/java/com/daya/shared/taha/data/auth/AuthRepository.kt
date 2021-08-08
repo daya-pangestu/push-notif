@@ -1,7 +1,6 @@
 package com.daya.shared.taha.data.auth
 
 import com.daya.shared.taha.domain.repository.IAuthRepository
-import com.google.firebase.auth.AuthCredential
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,8 +10,8 @@ class AuthRepository
     private val authDataSource: AuthDataSource
 ) : IAuthRepository {
 
-    override suspend fun signInWithCredential(credential: AuthCredential): String {
-        return authDataSource.signInWithCredential(credential)
+    override suspend fun signInWithCredential(idToken: String): String {
+        return authDataSource.signInWithCredential(idToken)
     }
 
     override fun isUserLoggedIn(): Boolean {
