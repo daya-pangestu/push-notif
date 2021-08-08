@@ -12,12 +12,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.daya.shared.taha.data.Resource
 import com.daya.taha.R
 import com.daya.taha.databinding.FragmentLoginBinding
-import com.daya.taha.util.toast
+import com.daya.taha.utils.toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber

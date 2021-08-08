@@ -14,7 +14,7 @@ import com.daya.shared.taha.domain.model.News
 import com.daya.shared.taha.domain.model.Topic
 import com.daya.taha.R
 import com.daya.taha.databinding.FragmentBroadcastBinding
-import com.daya.taha.util.toast
+import com.daya.taha.utils.toast
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
@@ -72,7 +72,7 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
             val titleText = binding.edTitle.text.toString()
             val descText = binding.edDesc.text.toString()
             val urlAccess = binding.edUrlAccess.text.toString()
-            val uriLocalImage = viewModel.getUriImage().value.toString() ?: ""
+            val uriLocalImage = viewModel.getUriImage().value.toString()
 
             val chosenTopics = viewModel.getChosenTopic()
 

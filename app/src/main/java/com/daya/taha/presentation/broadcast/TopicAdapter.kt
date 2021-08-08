@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.daya.shared.taha.domain.model.Topic
 import com.daya.taha.databinding.ItemTopicBinding
-import com.daya.taha.util.diffUtil
+import com.daya.taha.utils.diffUtil
 
 class TopicAdapter (
     topicDiffUtil: DiffUtil.ItemCallback<Topic> = diffUtil(

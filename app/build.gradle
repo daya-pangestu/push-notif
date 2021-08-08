@@ -174,9 +174,11 @@ dependencies {
     androidTestImplementation(LibsTest.coroutine_test){
         exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
     }
+    testImplementation LibsTest.coroutine_test
 
     //livedata util test
     androidTestImplementation LibsTest.instant_taskexecutor_rule
+    testImplementation LibsTest.instant_taskexecutor_rule
 }
 
 tasks.withType(Test) {

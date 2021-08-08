@@ -14,7 +14,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.daya.shared.taha.data.Resource
 import com.daya.taha.R
 import com.daya.taha.databinding.FragmentHomeBinding
-import com.daya.taha.util.toast
+import com.daya.taha.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber

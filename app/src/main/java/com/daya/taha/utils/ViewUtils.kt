@@ -1,4 +1,4 @@
-package com.daya.taha.util
+package com.daya.taha.utils
 
 import android.content.Context
 import android.content.res.Resources
