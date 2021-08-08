@@ -4,11 +4,10 @@ package com.daya.shared.taha.domain.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.data.auth.AuthRepository
-import com.daya.shared.taha.domain.TestAuthDataSource
+import com.daya.shared.taha.testutil.fake.FakeAuthDataSource
 import com.daya.shared.taha.domain.repository.IAuthRepository
 import com.daya.shared.taha.testutil.MainCoroutineRule
 import com.daya.shared.taha.testutil.runBlockingTest
-import com.google.firebase.auth.AuthCredential
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -37,7 +36,7 @@ class IsUserLoggedInUseCaseTest {
     }
 
     private val succesAuthRepository = AuthRepository(
-        TestAuthDataSource()
+        FakeAuthDataSource()
     )
 
     private val unsuccesAuthRepository = object : IAuthRepository {

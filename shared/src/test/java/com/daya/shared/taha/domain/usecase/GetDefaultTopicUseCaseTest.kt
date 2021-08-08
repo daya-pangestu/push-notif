@@ -3,7 +3,7 @@ package com.daya.shared.taha.domain.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.data.topic.TopicRepository
-import com.daya.shared.taha.domain.TestTopicDataSource
+import com.daya.shared.taha.testutil.fake.FakeTopicDataSource
 import com.daya.shared.taha.domain.model.TopicNet
 import com.daya.shared.taha.domain.repository.ITopicRepository
 import com.daya.shared.taha.testutil.Dummy
@@ -42,7 +42,7 @@ class GetDefaultTopicUseCaseTest {
     }
 
     private val succesTopicRepository = TopicRepository(
-        TestTopicDataSource(dummyTopicNet)
+        FakeTopicDataSource(dummyTopicNet)
     )
 
     private val unsuccesfulTopicRepository = object : ITopicRepository{
