@@ -14,11 +14,11 @@ constructor(
     }
 
     override suspend fun subscribeToTopic(topic: TopicNet): Boolean {
-        TODO("Not yet implemented")
+       return topicDataSource.subscribeTopic(topic)
     }
 
     override suspend fun unsubscribeToTopic(topic: TopicNet): Boolean {
-        TODO("Not yet implemented")
+        return topicDataSource.unSubscribeTopic(topic)
     }
 
     override suspend fun getSubscribedTopic(): List<String> {
