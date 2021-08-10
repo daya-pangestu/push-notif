@@ -19,6 +19,9 @@
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true"
             />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -58,5 +61,10 @@
         android:name="com.daya.taha.presentation.broadcast.BroadCastFragment"
         android:label="broad_cast_fragment"
         tools:layout="@layout/fragment_broadcast" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.daya.taha.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
 
 </navigation>
