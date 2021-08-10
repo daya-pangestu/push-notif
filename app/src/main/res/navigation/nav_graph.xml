@@ -63,7 +63,7 @@
         tools:layout="@layout/fragment_broadcast" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.daya.taha.SettingsFragment"
+        android:name="com.daya.taha.presentation.setting.SettingsFragment"
         android:label="settings_fragment"
         tools:layout="@layout/settings_fragment" />
 

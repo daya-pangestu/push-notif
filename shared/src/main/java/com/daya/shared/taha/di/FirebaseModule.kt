@@ -16,6 +16,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 import javax.inject.Singleton
 
 @Module
@@ -24,14 +29,14 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseApp(@ApplicationContext context : Context): FirebaseApp {
+    fun provideFirebaseApp(@ApplicationContext context: Context): FirebaseApp {
         val options = FirebaseOptions.Builder()
             .setProjectId("function-codelab")
             .setApplicationId("1:940399138392:android:d8579ee022305b09111c2d")
             .setApiKey("AIzaSyC1pcuE668UVJ9zI_bmyGEeaJzXkG8Ivy8")
             .build()
 
-        return Firebase.initialize(context,options,"secondary")
+        return Firebase.initialize(context, options, "secondary")
     }
 
     @Provides
@@ -51,4 +56,8 @@ object FirebaseModule {
     fun provideFireBaseMessaging(firebaseApp: FirebaseApp): FirebaseMessaging {
         return Firebase.messaging
     }
+
+
 }
+
+

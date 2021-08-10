@@ -28,6 +28,6 @@ constructor(
     }
 
     override suspend fun getSubscribedTopic(): List<String> {
-        TODO("Not yet implemented")
+        return topicDataSource.getSubScribedTopic()
     }
 }

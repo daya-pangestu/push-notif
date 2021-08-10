@@ -7,6 +7,11 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_campaign_24"/>
 
+    <item android:id="@id/settingsFragment"
+        android:title="settings"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_gear_black_24dp"/>
+
     <item android:id="@+id/action_logout"
         android:title="logout"
         app:showAsAction="collapseActionView"/>
