@@ -3,7 +3,9 @@ package com.daya.shared.taha.data.topic
 import com.daya.shared.taha.domain.model.TopicNet
 import com.daya.shared.taha.domain.repository.ITopicRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TopicRepository
 @Inject
 constructor(
@@ -15,6 +17,10 @@ constructor(
 
     override suspend fun subscribeToTopic(topic: TopicNet): Boolean {
        return topicDataSource.subscribeTopic(topic)
+    }
+
+    override suspend fun subscribeUserToDefaultTopic() {
+       return topicDataSource.subscribeingUserToDefaultTopic()
     }
 
     override suspend fun unsubscribeToTopic(topic: TopicNet): Boolean {

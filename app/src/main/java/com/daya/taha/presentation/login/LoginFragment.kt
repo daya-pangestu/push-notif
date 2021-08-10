@@ -78,6 +78,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     lifecycleScope.launch {
                         val name = it.data.lowercase()
                         context?.toast("welcome $name", Toast.LENGTH_LONG)
+                        viewModel.subscribingDefaultTopicToCurrentUser()
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                 }

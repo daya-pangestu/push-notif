@@ -12,6 +12,7 @@ import kotlin.coroutines.resume
 
 interface TopicDataSource {
     suspend fun getDefaultTopic() :List<TopicNet>
+    suspend fun subscribeingUserToDefaultTopic()
     suspend fun subscribeTopic(topic: TopicNet) : Boolean
     suspend fun unSubscribeTopic(topic: TopicNet) : Boolean
     suspend fun getSubScribedTopic() :List<String>
@@ -36,6 +37,22 @@ constructor(
             val isUnsubscribeAble = it.data?.get("isUnsubscribeAble") as Boolean
             TopicNet(topicId = topicId, topicName = name, isUnsubscribeAble = isUnsubscribeAble)
         }.toList()
+    }
+
+    override suspend fun subscribeingUserToDefaultTopic() {
+        return firestore
+            .collection("topics")
+            .get().await()
+            .documents
+            .asSequence()
+            .map {
+                val topicId = it.id
+                val name = it.data?.get("topicName").toString()
+               TopicNet(topicId,name)
+            }
+            .forEach {
+                subscribeTopic(it)
+            }
     }
 
     override suspend fun subscribeTopic(topic: TopicNet) : Boolean = suspendCancellableCoroutine {continuation ->
