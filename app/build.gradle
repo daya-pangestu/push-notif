@@ -106,6 +106,12 @@ dependencies {
     implementation Libs.glide
     kapt Libs.glide_compiler_kapt
 
+    //retrofit
+    implementation Libs.retrofit
+    implementation Libs.retrofit_converter_gson
+    implementation Libs.retrofit_converter_scalar
+
+
     //lifecycle
     implementation Libs.lifecycle_viewmodel_savedstate
     implementation Libs.lifecycle_common_java8

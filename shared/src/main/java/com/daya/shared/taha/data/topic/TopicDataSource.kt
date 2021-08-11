@@ -28,7 +28,7 @@ class FirebaseTopicDataSource
 constructor(
     private val firestore: FirebaseFirestore,
     private val messaging : FirebaseMessaging,
-    private val firebaseService: FirebaseApiService
+    private val firebaseApiService: FirebaseApiService
 ) : TopicDataSource {
 
     override suspend fun getDefaultTopic(): List<TopicNet>{
@@ -96,7 +96,7 @@ constructor(
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         val token = it.result!!
-                        client = firebaseService.getlistSubscribedTopic(token)
+                        client = firebaseApiService.getlistSubscribedTopic(token)
                         client?.enqueue(object : Callback<String> {
                             override fun onResponse(
                                 call: Call<String>,

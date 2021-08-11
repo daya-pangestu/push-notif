@@ -8,7 +8,7 @@ data class Topic(
     val topicId: String,
     val topicName: String,
     val isUserSubscribe: Boolean = false,//TODO ini ter reference di user
-    val isUnsubscribeAble: Boolean = false
+    var isUnsubscribeAble: Boolean = false
 
 ) : Parcelable
 

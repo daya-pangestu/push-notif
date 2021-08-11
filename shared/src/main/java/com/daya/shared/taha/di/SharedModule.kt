@@ -35,8 +35,8 @@ class SharedModule {
 
     @Singleton
     @Provides
-    fun provideTopicDataSource(firestore: FirebaseFirestore,messaging: FirebaseMessaging,firebaseService: FirebaseApiService) : TopicDataSource {
-        return FirebaseTopicDataSource(firestore,messaging,firebaseService)
+    fun provideTopicDataSource(firestore: FirebaseFirestore,messaging: FirebaseMessaging, firebaseApiService : FirebaseApiService) : TopicDataSource {
+        return FirebaseTopicDataSource(firestore,messaging,firebaseApiService)
     }
     @Singleton
     @Provides

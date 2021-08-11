@@ -15,16 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
-
-    @Singleton
-    @Provides
-    fun provideRetrofit(intercept : OkHttpClient): Retrofit =
-        Retrofit.Builder()
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .baseUrl("https://iid.googleapis.com/")
-            .client(intercept)
-            .build()
+object NetworkModule {
 
     @Singleton
     @Provides
@@ -36,6 +27,15 @@ class NetworkModule {
                 chain.proceed(request)
             }.build()
     }
+
+    @Singleton
+    @Provides
+    fun provideRetrofit(intercept : OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .baseUrl("https://iid.googleapis.com/")
+            .client(intercept)
+            .build()
 
     @Singleton
     @Provides

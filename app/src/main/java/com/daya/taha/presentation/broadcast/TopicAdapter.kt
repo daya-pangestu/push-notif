@@ -33,7 +33,12 @@ class TopicAdapter (
         fun bind(item: Topic, onCheckedChangeListener: (Topic, CompoundButton, Boolean) -> Unit) {
             binding.chipTopic.apply {
                 text = item.topicName
+                isChecked = item.isUserSubscribe
                 setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (item.isUnsubscribeAble) {
+                        buttonView.isChecked = !isChecked
+                        return@setOnCheckedChangeListener
+                    }
                     onCheckedChangeListener(item, buttonView, isChecked)
                 }
             }
