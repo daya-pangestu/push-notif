@@ -1,29 +1,37 @@
 package com.daya.taha.presentation.broadcast
 
 import android.net.Uri
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.domain.model.News
 import com.daya.shared.taha.domain.model.Topic
+import com.daya.shared.taha.domain.usecase.BroadCastNewsUseCase
 import com.daya.shared.taha.domain.usecase.GetDefaultTopicUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import timber.log.Timber
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.mapLatest
 import javax.inject.Inject
 
 @HiltViewModel
 class BroadCastViewModel
 @Inject constructor(
-    private val getDefaultTopicUseCase: GetDefaultTopicUseCase
+    private val getDefaultTopicUseCase: GetDefaultTopicUseCase,
+    private val broadCastNewsUseCase: BroadCastNewsUseCase
 ): ViewModel() {
     private val _broadcastNewsLiveData = MutableLiveData<News>()
 
+
     fun broadcastNews(news : News) {
-        Timber.i("adding news soon to be broadcast : $news")
+        _broadcastNewsLiveData.value = news
     }
 
-    val broadcastingLiveData = _broadcastNewsLiveData
+    val broadcastStatusLiveData = _broadcastNewsLiveData
+        .switchMap {
+            liveData {
+                val status = broadCastNewsUseCase(it)
+                emitSource(status.asLiveData())
+            }
+        }
 
     //getting topic for broadcast
     private val _getAllDefaultTOpic = liveData<Resource<List<Topic>>> {

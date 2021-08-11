@@ -7,6 +7,7 @@ import com.daya.shared.taha.domain.model.NewsNet
 import com.daya.shared.taha.domain.repository.IbroadCastRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import javax.inject.Inject
@@ -17,10 +18,10 @@ constructor(
     @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
     private val broadCastRepository : IbroadCastRepository
 
-) : FlowUseCase<News, Unit>(coroutineDispatcher) {
+) : FlowUseCase<News, Void?>(coroutineDispatcher) {
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    override fun execute(param: News): Flow<Resource<Unit>> = callbackFlow<Resource<Unit>>  {
+    override fun execute(param: News): Flow<Resource<Void?>> = callbackFlow<Resource<Void?>>  {
         val newsNet = NewsNet(
             senderId = param.senderId,
             title = param.title,
@@ -38,11 +39,13 @@ constructor(
             )
         )
 
-        val casted = broadCastRepository.broadCastNews(newsNet)
-        val resCasted = casted!!.let {
-            Resource.Success(Unit)
-        }
+        var casted = broadCastRepository.broadCastNews(newsNet)
+        val resCasted = Resource.Success(casted)
         trySend(resCasted)
+
+        awaitClose {
+            casted = null
+        }
     }
 
 

@@ -19,6 +19,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.io.File
 import java.lang.Exception
 
@@ -108,8 +109,12 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
             )
         }
 
-        viewModel.broadcastingLiveData.observe(viewLifecycleOwner) {
-
+        viewModel.broadcastStatusLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {Timber.i("loading")}
+                is Resource.Success -> {Timber.i("succes : ${it.data}")}
+                is Resource.Error -> {Timber.i("error : ${it.exceptionMessage}")}
+            }
         }
 
         viewModel.getUriImage().observe(viewLifecycleOwner){
