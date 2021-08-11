@@ -4,6 +4,7 @@ package com.daya.taha.presentation.login
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.domain.usecase.LoginWithCredentialUseCase
+import com.daya.shared.taha.domain.usecase.SubscribeUserToDefaultTopicUseCase
 import com.daya.taha.utils.MainCoroutineRule
 import com.daya.taha.utils.getOrAwaitValue
 import com.daya.taha.utils.runBlockingTest
@@ -22,8 +23,9 @@ class LoginViewModelTest {
     @get:Rule
     var coroutineRule = MainCoroutineRule()
 
-    val loginWithCredentialUseCase = mock<LoginWithCredentialUseCase>()
-    lateinit var loginViewModel: LoginViewModel
+    private val loginWithCredentialUseCase = mock<LoginWithCredentialUseCase>()
+    private val subscribeUserToDefaultTopicUseCase = mock<SubscribeUserToDefaultTopicUseCase>()
+    private lateinit var loginViewModel: LoginViewModel
 
     private val dummyIdToken = "0878"
     private val dummyDisplayName = "agni"
@@ -31,7 +33,7 @@ class LoginViewModelTest {
 
     @Before
     fun setUp() {
-        loginViewModel = LoginViewModel(loginWithCredentialUseCase)
+        loginViewModel = LoginViewModel(loginWithCredentialUseCase,subscribeUserToDefaultTopicUseCase)
     }
 
     @Test

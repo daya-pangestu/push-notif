@@ -28,7 +28,7 @@ jobs:
       - android/save-gradle-cache
 
       - android/run-tests:
-          test-command: ./gradlew sonarqube --stacktrace
+          test-command: ./gradlew sonarqube
 
       - store_artifacts:
           path: build/reports/jacoco/jacocoRootReport/jacocoRootReport.xml
