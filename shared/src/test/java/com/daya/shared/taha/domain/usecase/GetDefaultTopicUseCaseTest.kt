@@ -54,6 +54,10 @@ class GetDefaultTopicUseCaseTest {
             throw Exception("Error!")
         }
 
+        override suspend fun subscribeUserToDefaultTopic() {
+            throw Exception("Error!")
+        }
+
         override suspend fun unsubscribeToTopic(topic: TopicNet): Boolean {
             throw Exception("Error!")
         }
@@ -61,5 +65,6 @@ class GetDefaultTopicUseCaseTest {
         override suspend fun getSubscribedTopic(): List<String> {
             throw Exception("Error!")
         }
+
     }
 }
