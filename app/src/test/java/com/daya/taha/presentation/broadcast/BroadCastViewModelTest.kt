@@ -2,6 +2,7 @@ package com.daya.taha.presentation.broadcast
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.daya.shared.taha.data.Resource
+import com.daya.shared.taha.domain.usecase.BroadCastNewsUseCase
 import com.daya.shared.taha.domain.usecase.GetDefaultTopicUseCase
 import com.daya.taha.utils.*
 import com.google.common.truth.Truth.assertThat
@@ -20,13 +21,14 @@ class BroadCastViewModelTest {
     var coroutineRule = MainCoroutineRule()
 
     private val getDefaultTopicUseCase: GetDefaultTopicUseCase = mock()
+    private val broadCastNewsUseCase : BroadCastNewsUseCase = mock()
     lateinit var broadCastViewModel: BroadCastViewModel
 
     private val dummyResSucces = Resource.success(Dummy.topic)
 
     @Before
     fun setUp() {
-        broadCastViewModel = BroadCastViewModel(getDefaultTopicUseCase)
+        broadCastViewModel = BroadCastViewModel(getDefaultTopicUseCase,broadCastNewsUseCase)
     }
 
     @Test
