@@ -58,7 +58,11 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
                     setBtnBroadCastEnabled(false)
                 }
                 is Resource.Success -> {
-                    topicAdapter.submitList(it.data)
+                    val topicCheckAble = it.data.map { topic ->
+                        topic.isUnsubscribeAble = false
+                        topic
+                    }
+                    topicAdapter.submitList(topicCheckAble)
                     setBtnBroadCastEnabled(true)
                 }
                 is Resource.Error -> {
