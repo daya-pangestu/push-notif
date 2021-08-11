@@ -11,16 +11,14 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 import javax.inject.Singleton
 
 @Module
@@ -53,11 +51,23 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFireBaseMessaging(firebaseApp: FirebaseApp): FirebaseMessaging {
+    fun provideFireBaseMessaging(): FirebaseMessaging {
         return Firebase.messaging
     }
 
+    @Provides
+    @Singleton
+    fun provideFireBaseStorage(): FirebaseStorage {
+        return Firebase.storage.also {
+            it.maxUploadRetryTimeMillis = 200
+        }
+    }
 
+    @Provides
+    @Singleton
+    fun provideImageRef(firebaseStorage: FirebaseStorage, firebaseApp: FirebaseApp): StorageReference {
+        return firebaseStorage.reference.child("images")
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package com.daya.shared.taha.di
 
+import android.content.Context
 import com.daya.shared.taha.data.auth.AuthDataSource
 import com.daya.shared.taha.data.auth.AuthRepository
 import com.daya.shared.taha.data.auth.FireBaseAuthDataSource
@@ -15,9 +16,11 @@ import com.daya.shared.taha.domain.repository.IbroadCastRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.storage.StorageReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -50,8 +53,8 @@ class SharedModule {
 
     @Singleton
     @Provides
-    fun provideBroadCastDataSource(fireStore: FirebaseFirestore): BroadCastDataSource {
-        return FirebaseBroadCastDataSource(fireStore)
+    fun provideBroadCastDataSource(fireStore: FirebaseFirestore, imageRef : StorageReference, @ApplicationContext context : Context): BroadCastDataSource {
+        return FirebaseBroadCastDataSource(fireStore,imageRef, context)
     }
     @Singleton
     @Provides
