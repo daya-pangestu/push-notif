@@ -21,6 +21,7 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
+        Timber.i("remote message \ntitle: ${remoteMessage.notification?.title} \nbody: ${remoteMessage.notification?.body}  \nimageUrl${remoteMessage.notification?.imageUrl} ")
         handleNotification(remoteMessage)
     }
 
@@ -29,14 +30,13 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
         val channelName = "news"
         //TODO make pending intent to detail and visit link
 
-
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(remoteMessage.notification?.title)
             .setContentText(remoteMessage.notification?.body)
             .setSmallIcon(R.drawable.logo_ittp)
             .setAutoCancel(true)
             .setGroup(GROUP_KEY_NOTIFICATION)
-//            .addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", pendingIntentViewDetail)
+            //.addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", pendingIntentViewDetail)
             //.addAction(R.drawable.ic_baseline_link_24,"share link",pendingIntentViewDetail)
             .setPriority(NotificationCompat.PRIORITY_HIGH)//support for API level < 24
 
