@@ -1,10 +1,19 @@
 package com.daya.taha.presentation.notification
 
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import com.bumptech.glide.Glide
+import com.daya.taha.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import timber.log.Timber
-
+/*
+known bug : app would not receive notification when in foreground and previous notification still showing
+* */
 class NewsBroadcastMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(p0: String) {
@@ -14,12 +23,48 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
-        Timber.i("received remotemessage: $remoteMessage")
+        Timber.i("remote message \ntitle: ${remoteMessage.notification?.title} \nbody: ${remoteMessage.notification?.body}  \nimageUrl${remoteMessage.notification?.imageUrl} ")
+        handleNotification(remoteMessage)
     }
 
     private fun handleNotification(remoteMessage: RemoteMessage) {
         val channelId = "news channel id"
         val channelName = "news"
         //TODO make pending intent to detail and visit link
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setContentTitle(remoteMessage.notification?.title)
+            .setContentText(remoteMessage.notification?.body)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setAutoCancel(true)
+            .setGroup(GROUP_KEY_NOTIFICATION)
+            //.addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", pendingIntentViewDetail)
+            //.addAction(R.drawable.ic_baseline_link_24,"share link",pendingIntentViewDetail)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)//support for API level < 24
+
+        if (remoteMessage.notification?.imageUrl != null && remoteMessage.notification?.imageUrl.toString().isNotEmpty()) {
+            notificationBuilder.setStyle(NotificationCompat.BigPictureStyle()
+                .bigPicture(
+                    Glide.with(this)
+                        .asBitmap()
+                        .load(remoteMessage.notification?.imageUrl)
+                        .submit()
+                        .get()
+                )
+            )
+        }
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId,channelId,NotificationManager.IMPORTANCE_HIGH).apply {
+                name = channelName
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+        notificationManager.notify(0, notificationBuilder.build())
+    }
+
+    companion object{
+        private const val GROUP_KEY_NOTIFICATION = "group_key_notification"
     }
 }

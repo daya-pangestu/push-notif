@@ -1,8 +1,6 @@
 {
   "devices": [
-    "Samsung Galaxy A51-10.0",
-    "Xiaomi Redmi Note 8-9.0",
-    "Google Pixel 2-8.0"
+    "Samsung Galaxy A51-10.0"
     ],
   "deviceLogs": true,
   "networkLogs": true,

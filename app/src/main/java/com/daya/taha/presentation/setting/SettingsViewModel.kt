@@ -7,6 +7,7 @@ import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.domain.model.Topic
 import com.daya.shared.taha.domain.usecase.GetTopicWithSubscribeStatusUseCase
 import com.daya.shared.taha.domain.usecase.SubscribeToTopicUseCase
+import com.daya.shared.taha.domain.usecase.UnsubScribeToTopicUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +18,7 @@ class SettingsViewModel
 constructor(
     private val getTopicWithSubscribeStatusUseCase: GetTopicWithSubscribeStatusUseCase,
     private val subscribeToTopicUseCase: SubscribeToTopicUseCase,
+    private val unsubScribeToTopicUseCase: UnsubScribeToTopicUseCase
 ) : ViewModel() {
 
     private val _getTopicWithSubscribeStatus = liveData {
@@ -36,7 +38,11 @@ constructor(
     }
 
     fun unsubscribeTopic(topic: Topic) {
-
+        viewModelScope.launch {
+            when (val isUnSubscribeSuccess =unsubScribeToTopicUseCase(topic)) {
+                is Resource.Success ->  isUnSubscribeSuccess.data
+            }
+        }
     }
 
 }

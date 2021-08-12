@@ -77,7 +77,7 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
             val titleText = binding.edTitle.text.toString()
             val descText = binding.edDesc.text.toString()
             val urlAccess = binding.edUrlAccess.text.toString()
-            val uriLocalImage = viewModel.getUriImage().value.toString()
+            val uriLocalImage : String = viewModel.getUriImage().value?.toString() ?: ""
 
             val chosenTopics = viewModel.getChosenTopic()
 
@@ -111,7 +111,7 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
 
         viewModel.broadcastStatusLiveData.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Loading -> {Timber.i("loading")}
+                is Resource.Loading -> {Timber.i("loading ${it.progress}")}
                 is Resource.Success -> {Timber.i("succes : ${it.data}")}
                 is Resource.Error -> {Timber.i("error : ${it.exceptionMessage}")}
             }
