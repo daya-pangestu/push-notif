@@ -11,7 +11,9 @@ import com.daya.taha.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import timber.log.Timber
-
+/*
+known bug : app would not receive notification when in foreground and previous notification still showing
+* */
 class NewsBroadcastMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(p0: String) {
@@ -33,7 +35,7 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(remoteMessage.notification?.title)
             .setContentText(remoteMessage.notification?.body)
-            .setSmallIcon(R.drawable.logo_ittp)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setAutoCancel(true)
             .setGroup(GROUP_KEY_NOTIFICATION)
             //.addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", pendingIntentViewDetail)

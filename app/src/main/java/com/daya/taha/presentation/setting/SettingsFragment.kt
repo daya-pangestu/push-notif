@@ -26,11 +26,12 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         val topicAdapter = TopicAdapter{ topic,compoundView, isChecked ->
-            context?.toast("${compoundView.text} $isChecked")
             if (!isChecked) {
                 viewModel.unsubscribeTopic(topic)
+                context?.toast("subscribing to ${topic.topicName}")
             } else {
                 viewModel.subscribeTopic(topic)
+                context?.toast("unSubscribing from ${topic.topicName}")
             }
         }
         binding.rvTopic.apply {
