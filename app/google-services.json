@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "940399138392",
+    "project_id": "function-codelab",
+    "storage_bucket": "function-codelab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940399138392:android:a9dc4eb5fde6d851111c2d",
+        "android_client_info": {
+          "package_name": "com.daya.taha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940399138392-oagde8knoimaeg78mud7d7fdqrmv9lru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.daya.taha",
+            "certificate_hash": "218b31484af11e5e7a7fe120f66640a26d8787af"
+          }
+        },
+        {
+          "client_id": "940399138392-qpp4qlhkhcui2bmcf99tdblosfe0r3bb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1pcuE668UVJ9zI_bmyGEeaJzXkG8Ivy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940399138392-g5lrngoj44aqg31trtbrd061o1oopfbn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

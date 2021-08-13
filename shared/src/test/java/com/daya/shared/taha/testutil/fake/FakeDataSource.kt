@@ -21,7 +21,7 @@ class FakeAuthDataSource(private val displayName : String = "") : AuthDataSource
 
 class FakeTopicDataSource(private val defaultTopic : List<TopicNet> = emptyList(),private val subscribedTopic : List<String> = emptyList()) : TopicDataSource {
     override suspend fun getDefaultTopic(): List<TopicNet> = defaultTopic
-    override suspend fun subscribeingUserToDefaultTopic()= Unit
+    override suspend fun subscribingUserToDefaultTopic()= Unit
     override suspend fun subscribeTopic(topic: TopicNet): Boolean = true
     override suspend fun unSubscribeTopic(topic: TopicNet): Boolean = true
     override suspend fun getSubScribedTopic(): List<String> = subscribedTopic

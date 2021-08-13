@@ -20,7 +20,7 @@ constructor(
     }
 
     override suspend fun subscribeUserToDefaultTopic() {
-       return topicDataSource.subscribeingUserToDefaultTopic()
+       return topicDataSource.subscribingUserToDefaultTopic()
     }
 
     override suspend fun unsubscribeToTopic(topic: TopicNet): Boolean {
