@@ -1,5 +1,6 @@
 package com.daya.shared.taha.data.news
 
+import androidx.paging.LoadState
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.daya.shared.taha.domain.model.NewsNet

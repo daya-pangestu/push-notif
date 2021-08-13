@@ -37,41 +37,46 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val newsPagingAdapter = NewsPagingAdapter{ news: News ->
             context?.toast(news.title)
         }
-        binding.swipeRefresh.setOnRefreshListener(newsPagingAdapter::refresh)
-
-        newsPagingAdapter.addLoadStateListener { loadState: CombinedLoadStates ->
-            if (loadState.refresh is LoadState.Loading) {
-                binding.progressBar.isVisible = true
-                binding.swipeRefresh.isRefreshing = true
-            } else {
-                binding.progressBar.isVisible = false
-                binding.swipeRefresh.isRefreshing = false
-
-                val errorState = when {
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
-                errorState?.let {
-                    context?.toast(it.error.toString())
-                }
+        binding.swipeRefresh.apply {
+            setOnRefreshListener{
+                newsPagingAdapter.refresh()
             }
         }
 
-        binding.rvMain.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = newsPagingAdapter.withLoadStateFooter(
-                footer = NewsPagingLoadingAdapter(newsPagingAdapter::retry)
-            )
-        }
+            newsPagingAdapter.addLoadStateListener { loadState: CombinedLoadStates ->
+                if (loadState.refresh is LoadState.Loading) {
+                    binding.progressBar.isVisible = true
+                    binding.swipeRefresh.isRefreshing = true
+                } else {
+                    binding.progressBar.isVisible = false
+                    binding.swipeRefresh.isRefreshing = false
 
-        lifecycleScope.launch {
-            viewModel.infoPagingFlow
-                .collect(newsPagingAdapter::submitData)
+                    val errorState = when {
+                        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                        else -> null
+                    }
+                    errorState?.let {
+                        context?.toast(it.error.toString())
+                        binding.swipeRefresh.isRefreshing = false
+                    }
+                }
+            }
+
+            binding.rvMain.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = newsPagingAdapter.withLoadStateFooter(
+                    footer = NewsPagingLoadingAdapter(newsPagingAdapter::retry)
+                )
+            }
+
+            lifecycleScope.launch {
+                viewModel.infoPagingFlow
+                    .collect(newsPagingAdapter::submitData)
+            }
         }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
