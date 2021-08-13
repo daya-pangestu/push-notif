@@ -37,32 +37,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val newsPagingAdapter = NewsPagingAdapter{ news: News ->
             context?.toast(news.title)
         }
-        binding.swipeRefresh.apply {
-            setOnRefreshListener{
-                newsPagingAdapter.refresh()
-            }
-        }
 
-            newsPagingAdapter.addLoadStateListener { loadState: CombinedLoadStates ->
-                if (loadState.refresh is LoadState.Loading) {
-                    binding.progressBar.isVisible = true
-                    binding.swipeRefresh.isRefreshing = true
-                } else {
-                    binding.progressBar.isVisible = false
-                    binding.swipeRefresh.isRefreshing = false
+        newsPagingAdapter.addLoadStateListener { loadState: CombinedLoadStates ->
+            if (loadState.refresh is LoadState.Loading) {
+                binding.progressBar.isVisible = true
+            } else {
+                binding.progressBar.isVisible = false
 
-                    val errorState = when {
-                        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                        else -> null
-                    }
-                    errorState?.let {
-                        context?.toast(it.error.toString())
-                        binding.swipeRefresh.isRefreshing = false
-                    }
+                val errorState = when {
+                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                    else -> null
+                }
+                errorState?.let {
+                    context?.toast(it.error.toString())
                 }
             }
+        }
 
             binding.rvMain.apply {
                 setHasFixedSize(true)
