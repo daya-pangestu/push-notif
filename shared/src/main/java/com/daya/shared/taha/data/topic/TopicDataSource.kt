@@ -17,7 +17,7 @@ import kotlin.coroutines.resumeWithException
 
 interface TopicDataSource {
     suspend fun getDefaultTopic() :List<TopicNet>
-    suspend fun subscribeingUserToDefaultTopic()
+    suspend fun subscribingUserToDefaultTopic()
     suspend fun subscribeTopic(topic: TopicNet) : Boolean
     suspend fun unSubscribeTopic(topic: TopicNet) : Boolean
     suspend fun getSubScribedTopic() :List<String>
@@ -45,7 +45,7 @@ constructor(
         }.toList()
     }
 
-    override suspend fun subscribeingUserToDefaultTopic() {
+    override suspend fun subscribingUserToDefaultTopic() {
         return firestore
             .collection("topics")
             .get().await()

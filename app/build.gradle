@@ -6,6 +6,7 @@ plugins {
     id  'jacoco'
     id  'com.browserstack.gradle'
     id  'dagger.hilt.android.plugin'
+    id  'com.google.gms.google-services'
 }
 apply from: '../jacoco.gradle'
 
@@ -105,6 +106,8 @@ dependencies {
     //glide
     implementation Libs.glide
     kapt Libs.glide_compiler_kapt
+
+    implementation Libs.progress_button
 
     //retrofit
     implementation Libs.retrofit

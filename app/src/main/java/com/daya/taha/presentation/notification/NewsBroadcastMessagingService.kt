@@ -12,13 +12,13 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import timber.log.Timber
 /*
-known bug : app would not receive notification when in foreground and previous notification still showing
+known bug : app would not receive notification when in background or opened
 * */
 class NewsBroadcastMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
-        Timber.i(p0)
+        Timber.i("token: $p0")
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -35,7 +35,7 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(remoteMessage.notification?.title)
             .setContentText(remoteMessage.notification?.body)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.logo_ittp)
             .setAutoCancel(true)
             .setGroup(GROUP_KEY_NOTIFICATION)
             //.addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", pendingIntentViewDetail)
@@ -62,6 +62,12 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notificationBuilder.build())
+    }
+
+
+    override fun onDeletedMessages() {
+        super.onDeletedMessages()
+
     }
 
     companion object{

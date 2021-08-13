@@ -1,5 +1,6 @@
 package com.daya.taha.presentation.broadcast
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -15,6 +16,10 @@ import com.daya.shared.taha.domain.model.Topic
 import com.daya.taha.R
 import com.daya.taha.databinding.FragmentBroadcastBinding
 import com.daya.taha.utils.toast
+import com.github.razir.progressbutton.attachTextChangeAnimator
+import com.github.razir.progressbutton.bindProgressButton
+import com.github.razir.progressbutton.hideProgress
+import com.github.razir.progressbutton.showProgress
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
@@ -31,6 +36,9 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        bindProgressButton(binding.btnBroadcast)
+        binding.btnBroadcast.attachTextChangeAnimator()
 
         isImgChosen(false)
         binding.btnBrowseImg.setOnClickListener {
@@ -98,6 +106,11 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
                 return@setOnClickListener
             }
 
+            binding.btnBroadcast.showProgress {
+                buttonText = "broadcasting"
+                progressColor = Color.WHITE
+            }
+
             viewModel.broadcastNews(
                 News(
                     title = titleText,
@@ -111,9 +124,22 @@ class BroadCastFragment : Fragment(R.layout.fragment_broadcast) {
 
         viewModel.broadcastStatusLiveData.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Loading -> {Timber.i("loading ${it.progress}")}
-                is Resource.Success -> {Timber.i("succes : ${it.data}")}
-                is Resource.Error -> {Timber.i("error : ${it.exceptionMessage}")}
+                is Resource.Loading -> {
+                    Timber.i("loading ${it.progress}")
+                    binding.btnBroadcast.showProgress {
+                        buttonText = "${it.progress}"
+                        progressColor = Color.WHITE
+                    }
+                }
+                is Resource.Success -> {
+                    Timber.i("succes : ${it.data}")
+                    binding.btnBroadcast.hideProgress("info submitted")
+                }
+                is Resource.Error -> {
+                    binding.btnBroadcast.hideProgress("failed, retry?")
+                    Timber.i("error : ${it.exceptionMessage}")
+                    context?.toast("${it.exceptionMessage}")
+                }
             }
         }
 

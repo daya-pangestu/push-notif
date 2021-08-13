@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -79,6 +80,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         val name = it.data.lowercase()
                         context?.toast("welcome $name", Toast.LENGTH_LONG)
                         viewModel.subscribingDefaultTopicToCurrentUser()
+                        joinAll()
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                 }
