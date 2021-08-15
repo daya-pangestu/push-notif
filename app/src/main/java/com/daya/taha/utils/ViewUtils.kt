@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -16,6 +17,10 @@ fun dpToPx(dp: Int): Int {
 
 fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this,message,duration).show()
+}
+
+fun Fragment.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(requireContext(),message,duration).show()
 }
 
 fun <T> diffUtil(isItemTheSame : (T, T) -> Boolean, isContentTheSame : (T, T) -> Boolean): DiffUtil.ItemCallback<T> {

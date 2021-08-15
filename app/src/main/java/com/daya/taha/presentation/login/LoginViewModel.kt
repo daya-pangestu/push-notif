@@ -1,5 +1,6 @@
 package com.daya.taha.presentation.login
 
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.*
 import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.domain.usecase.LoginWithCredentialUseCase
@@ -25,6 +26,13 @@ constructor(
             _loginStatus.value = resStatus
         }
     }
+
+    private var _isLecturer = false
+    fun setIsLecturer(domain: String) {
+        val isStudent = domain.split("@").first().isDigitsOnly()
+        _isLecturer = !isStudent
+    }
+    fun isLecturer() = _isLecturer
 
     suspend fun subscribingDefaultTopicToCurrentUser() {
         return when (val status = subscribeUserToDefaultTopicUseCase(Unit)) {

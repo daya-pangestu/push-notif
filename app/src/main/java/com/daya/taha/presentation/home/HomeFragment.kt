@@ -1,17 +1,16 @@
 package com.daya.taha.presentation.home
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -31,11 +30,12 @@ import timber.log.Timber
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel by viewModels<HomeViewModel>()
-
+    private val args by navArgs<HomeFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        toast("logged in as ${if (args.islecturer) "lecturer" else "student"}")
 
         val newsPagingAdapter = NewsPagingAdapter{ news: News ->
             val navigateDetail = HomeFragmentDirections.actionHomeFragmentToDetailFragment(news)

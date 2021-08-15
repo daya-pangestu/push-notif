@@ -43,6 +43,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun requestGSO(domain: String): GoogleSignInClient {
+      viewModel.setIsLecturer(domain)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .setHostedDomain(domain)
@@ -58,7 +59,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             firebaseAuthWithGoogle(account.idToken!!)
         } catch (e: ApiException) {
             // Google Sign In failed, update UI appropriately
-            Timber.w("Google sign in failed $e")
+            Timber.e("Google sign in failed $e")
             context?.toast("google sign in failed ${e.localizedMessage}")
         }
     }
@@ -78,15 +79,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
                         val name = it.data.lowercase()
-                        context?.toast("welcome $name", Toast.LENGTH_LONG)
+                        toast("welcome $name", Toast.LENGTH_LONG)
                         viewModel.subscribingDefaultTopicToCurrentUser()
                         joinAll()
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        val result = LoginFragmentDirections.actionLoginFragmentToHomeFragment(viewModel.isLecturer())
+                        findNavController().navigate(result)
                     }
                 }
                 is Resource.Error -> {
                     val text = "login failed ${it.exceptionMessage}"
-                    context?.toast(text, Toast.LENGTH_LONG)
+                    toast(text, Toast.LENGTH_LONG)
                     Timber.e(text)
                 }
             }
@@ -97,4 +99,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         private const val DOMAIN_ITT = "ittelkom-pwt.ac.id"
         private const val DOMAIN_st3 = "st3telkom.ac.id"
     }
+
+
 }
