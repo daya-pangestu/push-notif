@@ -1,10 +1,12 @@
 package com.daya.taha.presentation.home
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -30,12 +32,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel by viewModels<HomeViewModel>()
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
         val newsPagingAdapter = NewsPagingAdapter{ news: News ->
-            context?.toast(news.title)
+            val navigateDetail = HomeFragmentDirections.actionHomeFragmentToDetailFragment(news)
+            findNavController().navigate(navigateDetail)
         }
 
         newsPagingAdapter.addLoadStateListener { loadState: CombinedLoadStates ->

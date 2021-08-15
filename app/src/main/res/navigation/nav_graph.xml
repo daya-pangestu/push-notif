@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -66,5 +69,15 @@
         android:name="com.daya.taha.presentation.setting.SettingsFragment"
         android:label="settings_fragment"
         tools:layout="@layout/settings_fragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.daya.taha.presentation.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="news_arg"
+            app:argType="com.daya.shared.taha.domain.model.News"
+            app:nullable="true" />
+    </fragment>
 
 </navigation>
