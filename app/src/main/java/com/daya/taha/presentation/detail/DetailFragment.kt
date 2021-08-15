@@ -52,7 +52,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             tvTitle.text = news?.title
             tvDesc.text = news?.description
 
-
             btnShareLink.setOnClickListener {
                 val shareLink = Intent().apply {
                     action = Intent.ACTION_SEND
