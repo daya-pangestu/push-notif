@@ -5,6 +5,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -67,6 +68,12 @@ object FirebaseModule {
     @Singleton
     fun provideImageRef(firebaseStorage: FirebaseStorage, firebaseApp: FirebaseApp): StorageReference {
         return firebaseStorage.reference.child("images")
+    }
+
+    @Provides
+    @Singleton
+    fun providesInfoRef(firestore: FirebaseFirestore): CollectionReference {
+        return firestore.collection("messages")
     }
 }
 
