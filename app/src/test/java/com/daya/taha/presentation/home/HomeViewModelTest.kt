@@ -29,10 +29,15 @@ class HomeViewModelTest {
         homeViewModel = HomeViewModel(logOutUseCase,infoPagingUseCase)
     }
 
-    @Test
-    fun logOut() = coroutineRule.runBlockingTest {
-        whenever(logOutUseCase(Unit)).thenReturn(dummyResSucces)
-        val result = homeViewModel.logOut()
-        assertThat(result).isEqualTo(dummyResSucces)
-    }
+//    @Test
+//    fun logOut() = coroutineRule.runBlockingTest {
+//        whenever(logOutUseCase(Unit)).thenReturn(dummyResSucces)
+//        val result = homeViewModel.logOut()
+//        assertThat(result).isEqualTo(dummyResSucces)
+//    }
+//
+//    @Test
+//    fun infoPaging() {
+//        whenever(infoPagingUseCase.invoke()).thenReturn()
+//    }
 }

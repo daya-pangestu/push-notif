@@ -13,7 +13,7 @@ import javax.inject.Inject
 class HomeViewModel
 @Inject constructor(
     private val logOutUseCase: LogOutUseCase,
-    private val infoPagingUseCase: InfoPagingUseCase
+    infoPagingUseCase: InfoPagingUseCase
 ): ViewModel() {
 
     suspend fun logOut() : Resource<Unit> {
