@@ -2,6 +2,7 @@ package com.daya.taha.presentation.home
 
 
 import com.daya.shared.taha.data.Resource
+import com.daya.shared.taha.domain.usecase.InfoPagingUseCase
 import com.daya.shared.taha.domain.usecase.LogOutUseCase
 import com.daya.taha.utils.MainCoroutineRule
 import com.daya.taha.utils.runBlockingTest
@@ -18,13 +19,14 @@ class HomeViewModelTest {
     var coroutineRule = MainCoroutineRule()
 
     private val logOutUseCase: LogOutUseCase = mock()
+    private val infoPagingUseCase: InfoPagingUseCase = mock()
     lateinit var homeViewModel: HomeViewModel
 
     private val dummyResSucces = Resource.success(Unit)
 
     @Before
     fun setUp() {
-        homeViewModel = HomeViewModel(logOutUseCase)
+        homeViewModel = HomeViewModel(logOutUseCase,infoPagingUseCase)
     }
 
     @Test
