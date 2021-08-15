@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.detail.DetailFragment"
+    android:padding="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/img_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Link :"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/img_banner"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/tv_url_access"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background_link"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:maxLines="1"
+        tools:text="@tools:sample/lorem/random"
+        android:enabled="true"
+        android:textIsSelectable="true"
+        android:focusable="true"
+        android:longClickable="true"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/tv_title"
+        tools:layout_editor_absoluteX="16dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:maxLines="3"
+        android:layout_marginTop="8dp"
+        android:paddingVertical="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_share_link"
+        tools:maxLines="2"
+        tools:text="@tools:sample/lorem/random" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/btn_share_link"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="share link"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_url_access" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="Description"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:maxLines="5"
+        tools:text="@tools:sample/lorem/random" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="Topics :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_topic"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:listitem="@layout/item_topic" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,7 @@ buildscript {
 
         classpath "gradle.plugin.com.browserstack.gradle:browserstack-gradle-plugin:3.0.2"//cloud ui test
 
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
     }
 }
 plugins {

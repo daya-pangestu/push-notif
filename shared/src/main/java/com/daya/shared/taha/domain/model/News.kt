@@ -1,6 +1,8 @@
 package com.daya.shared.taha.domain.model
 
+import android.os.Parcelable
 import com.google.firebase.firestore.ServerTimestamp
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 data class NewsNet(
@@ -15,7 +17,7 @@ data class NewsNet(
     val broadcastRequested: Date? = null
 )
 
-
+@Parcelize
 data class News(
     val senderId: String? = "",
     val title: String  = "",
@@ -25,4 +27,4 @@ data class News(
     val status: String = "requested",
     val topics: List<Topic> = emptyList(),
     val broadcastRequested: Date? = null
-)
+) : Parcelable
