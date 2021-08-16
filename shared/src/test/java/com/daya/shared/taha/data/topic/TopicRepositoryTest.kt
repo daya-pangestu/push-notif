@@ -33,8 +33,9 @@ class TopicRepositoryTest {
 
     @Test
     fun subscribeToTopic() = runBlocking {
-        topicRepository.subscribeToTopic(dummyTopicNet[0])
-        verify(firebaseTopicDataSource).subscribeTopic(dummyTopicNet[0])
+        whenever(firebaseTopicDataSource.subscribeTopic(dummyTopicNet[0])).thenReturn(true)
+        val actual = topicRepository.subscribeToTopic(dummyTopicNet[0])
+        assertThat(actual).isTrue()
     }
 
     @Test
@@ -45,8 +46,9 @@ class TopicRepositoryTest {
 
     @Test
     fun unsubscribeToTopic() = runBlocking {
-        topicRepository.unsubscribeToTopic(dummyTopicNet[0])
-        verify(firebaseTopicDataSource).unSubscribeTopic(dummyTopicNet[0])
+        whenever(firebaseTopicDataSource.unSubscribeTopic(dummyTopicNet[0])).thenReturn(true)
+        val actual = topicRepository.unsubscribeToTopic(dummyTopicNet[0])
+        assertThat(actual).isTrue()
     }
 
     @Test
