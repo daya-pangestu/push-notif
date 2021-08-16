@@ -24,6 +24,7 @@ class BroadCastViewModelTest {
     private val broadCastNewsUseCase : BroadCastNewsUseCase = mock()
     lateinit var broadCastViewModel: BroadCastViewModel
 
+    private val dummyTopic = Dummy.topic[0]
     private val dummyResSucces = Resource.success(Dummy.topic)
 
     @Before
@@ -48,5 +49,13 @@ class BroadCastViewModelTest {
     fun `delete UriImage`() {
         broadCastViewModel.deleteUriImage()
         assertThat(broadCastViewModel.getUriImage().getOrAwaitValue()).isEqualTo(null)
+    }
+
+    @Test
+    fun `pick remove selected topic`() {
+        broadCastViewModel.pickTopic(dummyTopic)
+        assertThat(broadCastViewModel.getTopic()).isEqualTo(dummyTopic)
+
+
     }
 }

@@ -13,6 +13,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 class LoginViewModelTest {
@@ -30,6 +31,7 @@ class LoginViewModelTest {
     private val dummyIdToken = "0878"
     private val dummyDisplayName = "agni"
     private val dummyResSucces = Resource.success(dummyDisplayName)
+    private val dummyResSuccesUnit = Resource.success(Unit)
 
     @Before
     fun setUp() {
@@ -41,5 +43,24 @@ class LoginViewModelTest {
         whenever(loginWithCredentialUseCase.invoke(dummyIdToken)).thenReturn(dummyResSucces)
         loginViewModel.login(dummyIdToken)
         assertThat(loginViewModel.loginStatus.getOrAwaitValue()).isEqualTo(dummyResSucces)
+    }
+
+    @Test
+    fun `set get isLecturer`() {
+        loginViewModel.setIsLecturer("dinda-hauw")
+        assertThat(loginViewModel.isLecturer()).isTrue()
+    }
+
+    @Test
+    fun `set get isStudent`() {
+        loginViewModel.setIsLecturer("15102014")
+        assertThat(loginViewModel.isLecturer()).isFalse()
+    }
+
+    @Test
+    fun subscribingDefaultTopicToCurrentUser() = coroutineRule.runBlockingTest {
+        whenever(subscribeUserToDefaultTopicUseCase(Unit)).thenReturn(dummyResSuccesUnit)
+        loginViewModel.subscribingDefaultTopicToCurrentUser()
+        verify(subscribeUserToDefaultTopicUseCase).invoke(Unit)
     }
 }

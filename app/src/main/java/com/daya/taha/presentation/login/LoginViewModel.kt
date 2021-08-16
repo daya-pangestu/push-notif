@@ -29,13 +29,18 @@ constructor(
 
     private var _isLecturer = false
     fun setIsLecturer(domain: String) {
-        val isStudent = domain.split("@").first().isDigitsOnly()
+        val isStudent = domain.split("@").first().isNumeric()
         _isLecturer = !isStudent
     }
     fun isLecturer() = _isLecturer
 
+    private fun String.isNumeric(): Boolean {
+        return this.matches("[-+]?\\d*\\.?\\d+".toRegex())
+    }
+
     suspend fun subscribingDefaultTopicToCurrentUser() {
-        return when (val status = subscribeUserToDefaultTopicUseCase(Unit)) {
+        val status = subscribeUserToDefaultTopicUseCase(Unit)
+        return when (status) {
             is Resource.Loading -> Timber.wtf("impossible loading state")
             is Resource.Success -> Timber.v("succes state")
             is Resource.Error -> Timber.e("error state : ${status.exceptionMessage}")

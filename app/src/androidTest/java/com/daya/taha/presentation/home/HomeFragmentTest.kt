@@ -31,6 +31,13 @@ class HomeFragmentTest{
     }
 
     @Test
+    fun home_show_rv() {
+        launchFragmentInHiltContainer<HomeFragment>()
+        onView(withId(R.id.rv_main))
+
+    }
+
+    @Test
     fun homeFragment_item_toolbar_navigate_to_broadcastFragment() {
         val navController = TestNavHostController(
             ApplicationProvider.getApplicationContext())

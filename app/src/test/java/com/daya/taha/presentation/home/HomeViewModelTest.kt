@@ -35,9 +35,5 @@ class HomeViewModelTest {
 //        val result = homeViewModel.logOut()
 //        assertThat(result).isEqualTo(dummyResSucces)
 //    }
-//
-//    @Test
-//    fun infoPaging() {
-//        whenever(infoPagingUseCase.invoke()).thenReturn()
-//    }
+
 }
