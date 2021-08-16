@@ -8,7 +8,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.os.bundleOf
+import androidx.navigation.NavDeepLinkBuilder
 import com.bumptech.glide.Glide
+import com.daya.shared.taha.domain.model.News
+import com.daya.shared.taha.domain.model.Topic
 import com.daya.taha.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -33,22 +37,43 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
         val channelId = "news channel id"
         val channelName = "news"
         //TODO make pending intent to detail and visit link
+
+        val news = News(
+            senderId = remoteMessage.data["senderId"] ?: "",
+            title = remoteMessage.notification?.title ?: "",
+            description = remoteMessage.notification?.body ?: "",
+            urlAccess = remoteMessage.data["urlAccess"] ?: "",
+            urlImage = remoteMessage.notification?.imageUrl.toString() ?: "",
+            status = "broadcasted",
+            topics = sculptingTopic(remoteMessage.data["topics"])
+        )
+
         val intentShare = Intent().let {
             it.action = Intent.ACTION_SEND
-            it.putExtra(Intent.EXTRA_TEXT, remoteMessage.data["urlAccess"])
+            it.putExtra(Intent.EXTRA_TEXT, news.urlAccess)
             it.type = "text/plain"
             Intent.createChooser(it, "share link")
             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             PendingIntent.getActivity(applicationContext,1, it ,PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
+        val intentToDetail = NavDeepLinkBuilder(applicationContext)
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.detailFragment)
+            .setArguments(
+                bundleOf("news_arg" to news)
+            )
+            .createPendingIntent()
+
+
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setContentTitle(remoteMessage.notification?.title)
-            .setContentText(remoteMessage.notification?.body)
+            .setContentTitle(news.title)
+            .setContentText(news.description)
             .setSmallIcon(R.drawable.logo_ittp)
             .setAutoCancel(true)
             .setGroup(GROUP_KEY_NOTIFICATION)
-            //.addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", pendingIntentViewDetail)
+            .setContentIntent(intentToDetail)
+            .addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", intentToDetail)
             .addAction(R.drawable.ic_baseline_share_24,"share link",intentShare)
             .setPriority(NotificationCompat.PRIORITY_HIGH)//support for API level < 24
 
@@ -74,10 +99,23 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
         notificationManager.notify(0, notificationBuilder.build())
     }
 
-
     override fun onDeletedMessages() {
         super.onDeletedMessages()
+    }
 
+    private fun sculptingTopic(listString: String?): List<Topic> {
+        if (listString == null) {
+            return emptyList()
+        }
+        return listString.split(",")
+            .map {
+                val text = it.replace("[", "")
+                    .replace("]", "")
+                Topic(
+                    topicName = text,
+                    topicId = ""
+                )
+            }
     }
 
     companion object{
