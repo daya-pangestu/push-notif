@@ -3,7 +3,9 @@ package com.daya.taha.presentation.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.bumptech.glide.Glide
@@ -31,6 +33,14 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
         val channelId = "news channel id"
         val channelName = "news"
         //TODO make pending intent to detail and visit link
+        val intentShare = Intent().let {
+            it.action = Intent.ACTION_SEND
+            it.putExtra(Intent.EXTRA_TEXT, remoteMessage.data["urlAccess"])
+            it.type = "text/plain"
+            Intent.createChooser(it, "share link")
+            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            PendingIntent.getActivity(applicationContext,1, it ,PendingIntent.FLAG_UPDATE_CURRENT)
+        }
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(remoteMessage.notification?.title)
@@ -39,7 +49,7 @@ class NewsBroadcastMessagingService : FirebaseMessagingService() {
             .setAutoCancel(true)
             .setGroup(GROUP_KEY_NOTIFICATION)
             //.addAction(R.drawable.ic_baseline_remove_red_eye_24, "detail", pendingIntentViewDetail)
-            //.addAction(R.drawable.ic_baseline_link_24,"share link",pendingIntentViewDetail)
+            .addAction(R.drawable.ic_baseline_share_24,"share link",intentShare)
             .setPriority(NotificationCompat.PRIORITY_HIGH)//support for API level < 24
 
         if (remoteMessage.notification?.imageUrl != null && remoteMessage.notification?.imageUrl.toString().isNotEmpty()) {
