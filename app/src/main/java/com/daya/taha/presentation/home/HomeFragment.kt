@@ -20,9 +20,12 @@ import com.daya.shared.taha.data.Resource
 import com.daya.shared.taha.domain.model.News
 import com.daya.taha.R
 import com.daya.taha.databinding.FragmentHomeBinding
+import com.daya.taha.utils.EspressoIdlingResource
 import com.daya.taha.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -45,7 +48,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         newsPagingAdapter.addLoadStateListener { loadState: CombinedLoadStates ->
             if (loadState.refresh is LoadState.Loading) {
                 binding.progressBar.isVisible = true
+                EspressoIdlingResource.increment()
+
             } else {
+                EspressoIdlingResource.decrement()
                 binding.progressBar.isVisible = false
 
                 val errorState = when {
@@ -70,7 +76,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             lifecycleScope.launch {
                 viewModel.infoPagingFlow
-                    .collect(newsPagingAdapter::submitData)
+                    .collect{
+                        newsPagingAdapter.submitData(it)
+                    }
             }
         }
 

@@ -107,6 +107,7 @@ dependencies {
 
     //glide
     implementation Libs.glide
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
     kapt Libs.glide_compiler_kapt
 
     implementation Libs.progress_button
@@ -167,6 +168,7 @@ dependencies {
     //espresso-intent
     androidTestImplementation LibsTest.androidx_test_espresso_intent_test
     testImplementation LibsTest.androidx_test_espresso_contrib_test
+    androidTestImplementation LibsTest.androidx_test_espresso_idlingresource_test
 
     //unit test suite
     testImplementation LibsTest.robolectric_test

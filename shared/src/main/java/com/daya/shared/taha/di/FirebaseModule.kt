@@ -28,26 +28,14 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseApp(@ApplicationContext context: Context): FirebaseApp {
-        val options = FirebaseOptions.Builder()
-            .setProjectId("function-codelab")
-            .setApplicationId("1:940399138392:android:d8579ee022305b09111c2d")
-            .setApiKey("AIzaSyC1pcuE668UVJ9zI_bmyGEeaJzXkG8Ivy8")
-            .build()
-
-        return Firebase.initialize(context, options, "secondary")
+    fun provideFireStore(): FirebaseFirestore {
+        return Firebase.firestore
     }
 
     @Provides
     @Singleton
-    fun provideFireStore(firebaseApp: FirebaseApp): FirebaseFirestore {
-        return Firebase.firestore(firebaseApp)
-    }
-
-    @Provides
-    @Singleton
-    fun provideFireBaseAuth(firebaseApp: FirebaseApp): FirebaseAuth {
-        return Firebase.auth(firebaseApp)
+    fun provideFireBaseAuth(): FirebaseAuth {
+        return Firebase.auth
     }
 
     @Provides
@@ -66,7 +54,7 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideImageRef(firebaseStorage: FirebaseStorage, firebaseApp: FirebaseApp): StorageReference {
+    fun provideImageRef(firebaseStorage: FirebaseStorage): StorageReference {
         return firebaseStorage.reference.child("images")
     }
 

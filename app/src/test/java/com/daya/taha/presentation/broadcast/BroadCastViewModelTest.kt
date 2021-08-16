@@ -51,11 +51,4 @@ class BroadCastViewModelTest {
         assertThat(broadCastViewModel.getUriImage().getOrAwaitValue()).isEqualTo(null)
     }
 
-    @Test
-    fun `pick remove selected topic`() {
-        broadCastViewModel.pickTopic(dummyTopic)
-        assertThat(broadCastViewModel.getTopic()).isEqualTo(dummyTopic)
-
-
-    }
 }

@@ -11,6 +11,7 @@ import com.daya.shared.taha.data.Resource
 import com.daya.taha.R
 import com.daya.taha.databinding.SettingsFragmentBinding
 import com.daya.taha.presentation.broadcast.TopicAdapter
+import com.daya.taha.utils.EspressoIdlingResource
 import com.daya.taha.utils.toast
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -42,17 +43,20 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
             adapter = topicAdapter
         }
 
+        EspressoIdlingResource.increment()
         viewModel.getTopicWithSubscribedStatusLiveData.observe(viewLifecycleOwner){
             when (it) {
                 is Resource.Loading -> {
                     setProgress(true)
                 }
                 is Resource.Success -> {
+                    EspressoIdlingResource.decrement()
                     setProgress(false)
                     val topicList = it.data
                     topicAdapter.submitList(topicList)
                 }
                 is Resource.Error -> {
+                    EspressoIdlingResource.decrement()
                     setProgress(false)
                     context?.toast("error ${it.exceptionMessage}", Toast.LENGTH_LONG)
                 }
