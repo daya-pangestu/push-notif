@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.daya.taha.presentation.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_broadCastFragment"
@@ -51,7 +51,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.daya.taha.presentation.login.LoginFragment"
-        android:label="fragment_login"
+        android:label="login"
         tools:layout="@layout/fragment_login"
         app:popUpTo="@id/homeFragment"
         app:popUpToInclusive="true"
@@ -66,17 +66,17 @@
     <fragment
         android:id="@+id/broadCastFragment"
         android:name="com.daya.taha.presentation.broadcast.BroadCastFragment"
-        android:label="broad_cast_fragment"
+        android:label="broadcast"
         tools:layout="@layout/fragment_broadcast" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.daya.taha.presentation.setting.SettingsFragment"
-        android:label="settings_fragment"
+        android:label="settings"
         tools:layout="@layout/settings_fragment" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.daya.taha.presentation.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="detail"
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="news_arg"
