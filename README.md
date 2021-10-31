@@ -8,33 +8,38 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=com.daya.taha&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=com.daya.taha)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=com.daya.taha&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=com.daya.taha)
 
-
-
-This is a mobile application that is used for thesis graduation requirements
+A send-receive notification app 
 
 ## Review tools for development
 few tools used during development to ensure quality of code 
 
-|tools|desc|review-link|
-|----|----|----|
-| [Circle CI](https://circleci.com) | continous integration | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  |
-| [Jacoco](https://www.eclemma.org/jacoco/) | java code coverage | - |
-| [SonarCloud.io](https://sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) |
-| [BrowserStack](https://browserstack.com) |ui testing cloud-based | non-public|
+|tools|desc|review-link|file configuration
+|----|----|----|----|
+| [Circle CI](https://circleci.com) | continous integration | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  | ![config.yml](.circleci/config.yml) |
+| [Jacoco](https://www.eclemma.org/jacoco/) | java code coverage | - | ![jacoco setup](jacoco.gradle) |
+| [SonarCloud.io](https://sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) | ![sonarqube config](build.gradle) |
+| [BrowserStack](https://browserstack.com) |ui testing cloud-based | non-public| ![browserstack config](app/browserstack_config.json) |
 
 
+## Tech-Stack
+this project also use many android tech stack, such as:
+    - paging3
+    - kotlin coroutine and flow
+    - hilt
+    - navigation architecture
+    - flexbox
+    - google dialog login
 
 
-## Todos
+## Result
+[![send-receive notification](https://img.youtube.com/vi/AyZ9INbBdYo/0.jpg)](https://youtu.be/AyZ9INbBdYo)
+one of the main feature, including but not limited to:
+    - paging list, load small cunk of data one at a time
+    - send notification with or without image
+    - track progress of sending notification
+    - show/collapse notification and stack the notification 
 
- - define schema for database table
- - add room database
- - configure store4 in shared module
- - test room with store4
 
-
-
-
-# License
+## License
 
 Licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
