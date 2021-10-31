@@ -39,6 +39,7 @@ this project also use many android tech stack, such as:
 [![send-receive notification](https://img.youtube.com/vi/AyZ9INbBdYo/0.jpg)](https://youtu.be/AyZ9INbBdYo)
 
 one of the main feature, including but not limited to:
+
     - paging list, load small cunk of data one at a time
     - send notification with or without image
     - track progress of sending notification
