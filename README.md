@@ -11,18 +11,21 @@
 A send-receive notification app 
 
 ## Review tools for development
+
 few tools used during development to ensure quality of code 
 
 |tools|desc|review-link|file configuration
 |----|----|----|----|
-| [Circle CI](https://circleci.com) | continous integration | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  | ![config.yml](.circleci/config.yml) |
-| [Jacoco](https://www.eclemma.org/jacoco/) | java code coverage | - | ![jacoco setup](jacoco.gradle) |
-| [SonarCloud.io](https://sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) | ![sonarqube config](build.gradle) |
-| [BrowserStack](https://browserstack.com) |ui testing cloud-based | non-public| ![browserstack config](app/browserstack_config.json) |
+| [Circle CI](https://circleci.com) | continuous integration | [pipeline](https://circleci.com/gh/daya-pangestu/tugas-akhir)  | [config.yml](.circleci/config.yml) |
+| [Jacoco](https://www.eclemma.org/jacoco/) | java code coverage | - | [jacoco setup](jacoco.gradle) |
+| [SonarCloud.io](https://sonarcloud.io) |online-based code coverage reporting tool |[project-review](https://sonarcloud.io/organizations/taha-tugas-akhir-haha/projects) | [sonarqube config](build.gradle) |
+| [BrowserStack](https://browserstack.com) |ui testing cloud-based | non-public| [browserstack config](app/browserstack_config.json) |
 
 
 ## Tech-Stack
+
 this project also use many android tech stack, such as:
+
     - paging3
     - kotlin coroutine and flow
     - hilt
@@ -32,7 +35,9 @@ this project also use many android tech stack, such as:
 
 
 ## Result
+
 [![send-receive notification](https://img.youtube.com/vi/AyZ9INbBdYo/0.jpg)](https://youtu.be/AyZ9INbBdYo)
+
 one of the main feature, including but not limited to:
     - paging list, load small cunk of data one at a time
     - send notification with or without image
