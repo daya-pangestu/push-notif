@@ -45,6 +45,9 @@ one of the main feature, including but not limited to:
     - track progress of sending notification
     - show/collapse notification and stack the notification 
 
+## How This Work
+
+in nutshell, i need to made a custom trigger in Firebase-database, whenever new data inserted, send push notification to designed topic, full implementation can be found in [this repo](https://github.com/daya-pangestu/backend-push-notif)
 
 ## License
 
